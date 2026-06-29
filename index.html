@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mouzy — Strategic Analysis & Growth Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap');
+
+  :root {
+    --saffron:   #E8A020;
+    --deep:      #1A1208;
+    --cream:     #F9F4EC;
+    --muted:     #7A6E60;
+    --rust:      #C04A1A;
+    --green:     #2D6A4F;
+    --border:    #E0D8CA;
+    --white:     #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--deep);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--deep);
+    color: var(--white);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,32,0.18) 0%, transparent 70%);
+  }
+  .cover-badge {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 32px;
+    display: block;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  .cover h1 span { color: var(--saffron); }
+  .cover-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 48px;
+    max-width: 560px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 32px;
+  }
+  .cover-meta-item label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  /* NAV */
+  .toc {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 60px;
+  }
+  .toc h2 {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    font-size: 13px;
+    color: var(--deep);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    gap: 10px;
+  }
+  .toc-item span:first-child {
+    color: var(--saffron);
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 24px;
+  }
+
+  /* CONTENT */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 60px 120px;
+  }
+
+  /* SECTION HEADERS */
+  .section {
+    margin-bottom: 72px;
+  }
+  .section-eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.15;
+  }
+  .section-divider {
+    height: 3px;
+    background: linear-gradient(90deg, var(--saffron) 0%, transparent 100%);
+    width: 60px;
+    margin-bottom: 32px;
+  }
+
+  /* EXEC SUMMARY */
+  .exec-summary {
+    background: var(--deep);
+    color: var(--white);
+    padding: 40px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  .exec-summary h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--saffron);
+    margin-bottom: 16px;
+  }
+  .exec-summary p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-top: 3px solid var(--saffron);
+  }
+  .kpi-card .kpi-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--deep);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-card .kpi-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+    font-size: 13.5px;
+  }
+  thead th {
+    background: var(--deep);
+    color: var(--white);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  tbody tr:nth-child(even) { background: var(--white); }
+  tbody tr:nth-child(odd) { background: rgba(249,244,236,0.6); }
+  tbody td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tbody tr:hover { background: rgba(232,160,32,0.06); }
+
+  /* PILLS / TAGS */
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .pill-high { background: #FEE2E2; color: #991B1B; }
+  .pill-med  { background: #FEF3C7; color: #92400E; }
+  .pill-low  { background: #D1FAE5; color: #065F46; }
+  .pill-yes  { background: #D1FAE5; color: #065F46; }
+  .pill-no   { background: #FEE2E2; color: #991B1B; }
+  .pill-plan { background: #E0E7FF; color: #3730A3; }
+  .pill-saffron { background: rgba(232,160,32,0.15); color: #92400E; }
+
+  /* SWOT */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+  .swot-cell {
+    padding: 28px;
+    min-height: 200px;
+  }
+  .swot-cell h4 {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .swot-s { background: #1A2E1F; color: #fff; }
+  .swot-s h4 { color: #6EE7B7; }
+  .swot-w { background: #2E1A1A; color: #fff; }
+  .swot-w h4 { color: #FCA5A5; }
+  .swot-o { background: #1A1E2E; color: #fff; }
+  .swot-o h4 { color: #A5B4FC; }
+  .swot-t { background: #2E2A1A; color: #fff; }
+  .swot-t h4 { color: #FDE68A; }
+  .swot-cell ul { list-style: none; padding: 0; }
+  .swot-cell ul li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.85);
+  }
+  .swot-cell ul li::before { content: '→ '; opacity: 0.5; }
+
+  /* INSIGHT CARDS */
+  .insight-card {
+    border-left: 4px solid var(--saffron);
+    background: var(--white);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+  .insight-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .insight-card .insight-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .insight-card p { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+  .insight-card .roi-line {
+    font-weight: 600;
+    color: var(--green);
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  /* PLATFORM CARDS */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .platform-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .platform-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .platform-card .row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .platform-card .row label { font-size: 12px; color: var(--muted); }
+  .platform-card .row span { font-size: 12px; font-weight: 600; }
+
+  /* ROADMAP */
+  .roadmap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+  .roadmap-col {
+    background: var(--white);
+    padding: 28px;
+  }
+  .roadmap-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .roadmap-col .period {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .roadmap-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .roadmap-item strong { display: block; font-weight: 600; margin-bottom: 2px; }
+  .roadmap-item span { font-size: 12px; color: var(--muted); }
+
+  /* PORTER'S */
+  .porters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 40px;
+  }
+  .porter-cell {
+    background: var(--white);
+    padding: 22px;
+    border-top: 3px solid transparent;
+  }
+  .porter-cell.high { border-top-color: var(--rust); }
+  .porter-cell.med  { border-top-color: var(--saffron); }
+  .porter-cell.low  { border-top-color: var(--green); }
+  .porter-cell h5 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .porter-cell .force-level {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .porter-cell p { font-size: 12.5px; color: var(--muted); }
+
+  /* OPPORTUNITY MATRIX */
+  .opp-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .opp-quadrant {
+    padding: 24px;
+    min-height: 180px;
+  }
+  .opp-quadrant h5 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .opp-q1 { background: #1A2E1F; color: #fff; }
+  .opp-q1 h5 { color: #6EE7B7; }
+  .opp-q2 { background: #1A1E2E; color: #fff; }
+  .opp-q2 h5 { color: #A5B4FC; }
+  .opp-q3 { background: #2E2A1A; color: #fff; }
+  .opp-q3 h5 { color: #FDE68A; }
+  .opp-q4 { background: #1E1E1E; color: #fff; }
+  .opp-q4 h5 { color: rgba(255,255,255,0.4); }
+  .opp-quadrant p { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+  /* GROWTH FLYWHEEL */
+  .flywheel {
+    background: var(--deep);
+    color: var(--white);
+    padding: 40px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .flywheel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--saffron);
+    margin-bottom: 24px;
+  }
+  .flywheel-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+  .flywheel-step {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 18px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .flywheel-step strong { display: block; color: var(--saffron); font-size: 12px; margin-bottom: 4px; font-family: 'Courier Prime', monospace; letter-spacing: 1px; text-transform: uppercase; }
+  .flywheel-arrow {
+    font-size: 20px;
+    color: var(--saffron);
+    padding: 0 8px;
+    opacity: 0.6;
+  }
+
+  /* CALLOUT BOX */
+  .callout {
+    background: rgba(232,160,32,0.08);
+    border: 1px solid rgba(232,160,32,0.3);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .callout strong { color: var(--rust); }
+
+  /* RISK MATRIX */
+  .risk-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .risk-item .risk-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--border);
+    min-width: 36px;
+  }
+  .risk-item h5 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .risk-item p { font-size: 13px; color: var(--muted); }
+
+  /* FOOTER */
+  .report-footer {
+    background: var(--deep);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    font-family: 'Courier Prime', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* PAGE BREAKS */
+  .page-break { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+
+  @media (max-width: 768px) {
+    .cover { padding: 48px 24px 40px; }
+    .cover h1 { font-size: 38px; }
+    .content { padding: 40px 24px 80px; }
+    .swot-grid, .roadmap, .porters-grid, .opp-matrix { grid-template-columns: 1fr; }
+    .toc { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <span class="cover-badge">Confidential · Strategic Analysis Report · June 2026</span>
+  <h1><span>Mouzy</span><br>Growth &<br>Scale Report</h1>
+  <p class="cover-sub">India's first exclusive Avil Milk brand — a 15-part strategic deep-dive covering market expansion, marketplace entry, franchise scaling, and financial opportunity.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><label>Founded</label><span>1985 (Shimla Juice Shop) · Mouzy brand 2020</span></div>
+    <div class="cover-meta-item"><label>Certification</label><span>ISO 22000:2018</span></div>
+    <div class="cover-meta-item"><label>Outlets</label><span>13 (India + Dubai)</span></div>
+    <div class="cover-meta-item"><label>Product Range</label><span>60+ Avil Milk Varieties</span></div>
+    <div class="cover-meta-item"><label>Geography</label><span>Kerala · Tamil Nadu · Karnataka · UAE · GCC</span></div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Contents</h2>
+  <div class="toc-grid">
+    <a class="toc-item" href="#p1"><span>01</span> Company Overview</a>
+    <a class="toc-item" href="#p2"><span>02</span> Market Research</a>
+    <a class="toc-item" href="#p3"><span>03</span> Competitor Analysis</a>
+    <a class="toc-item" href="#p4"><span>04</span> SWOT Analysis</a>
+    <a class="toc-item" href="#p5"><span>05</span> Customer Analysis</a>
+    <a class="toc-item" href="#p6"><span>06</span> Organization Analysis</a>
+    <a class="toc-item" href="#p7"><span>07</span> Marketplace Expansion</a>
+    <a class="toc-item" href="#p8"><span>08</span> Scaling Opportunities</a>
+    <a class="toc-item" href="#p9"><span>09</span> Operational Improvements</a>
+    <a class="toc-item" href="#p10"><span>10</span> Marketing Strategy</a>
+    <a class="toc-item" href="#p11"><span>11</span> Financial Opportunities</a>
+    <a class="toc-item" href="#p12"><span>12</span> Technology Roadmap</a>
+    <a class="toc-item" href="#p13"><span>13</span> 90-Day Action Plan</a>
+    <a class="toc-item" href="#p14"><span>14</span> Founder Recommendations</a>
+    <a class="toc-item" href="#p15"><span>15</span> Million-Dollar Insights</a>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- EXEC SUMMARY -->
+  <div class="exec-summary">
+    <h3>Executive Summary</h3>
+    <p>Mouzy is a rare anomaly in Indian F&B: a single-product QSR brand built around an obscure Kerala street food — Avil Milk — that has quietly achieved regional cult status, international presence, and a scalable franchise model, all with zero venture capital and deep cultural roots.</p>
+    <p>The business sits at the intersection of three powerful macro-trends: (1) India's flavoured milk market growing at a 20.73% CAGR toward ₹374 Billion by 2033, (2) the quick-commerce revolution reshaping food distribution in Tier-1 and Tier-2 cities, and (3) the global NRI diaspora's insatiable appetite for authentic Kerala nostalgia.</p>
+    <p>The strategic opportunity is this: Mouzy has the brand, the heritage story, and the product differentiation — but it lacks a packaged retail format, a digital ordering engine, and the operational playbook to scale beyond franchise outlets. The company is sitting on a ₹100 Cr+ revenue opportunity if it executes its next 18 months correctly.</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-num">13</div><div class="kpi-label">Active Outlets</div></div>
+    <div class="kpi-card"><div class="kpi-num">60+</div><div class="kpi-label">Avil Milk Varieties</div></div>
+    <div class="kpi-card"><div class="kpi-num">336K</div><div class="kpi-label">Instagram Followers</div></div>
+    <div class="kpi-card"><div class="kpi-num">20.7%</div><div class="kpi-label">Flavoured Milk CAGR</div></div>
+    <div class="kpi-card"><div class="kpi-num">₹19–33L</div><div class="kpi-label">Franchise Investment</div></div>
+    <div class="kpi-card"><div class="kpi-num">3 GCC</div><div class="kpi-label">Countries (UAE, Qatar, KSA)</div></div>
+  </div>
+
+  <hr class="page-break" id="p1">
+
+  <!-- PART 1 -->
+  <div class="section">
+    <span class="section-eyebrow">Part 01</span>
+    <h2>Company Overview</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Dimension</th><th>Detail</th><th>Assessment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Business Model</strong></td><td>QSR franchise + company-owned outlets. FOCO (Franchisee-Owned, Company-Operated) model. Single-category specialist.</td><td><span class="pill pill-high">High Moat</span></td></tr>
+        <tr><td><strong>Core Product</strong></td><td>Avil Milk — mashed banana, roasted rice flakes (aval/poha), milk, peanuts, flavour toppings. Served fresh in-store.</td><td><span class="pill pill-saffron">Perishable</span></td></tr>
+        <tr><td><strong>Product Range</strong></td><td>60+ varieties across three tiers: Special, Premium (Badam, Arabian Nut, Dry Fruits, Fig & Honey, SP Nuts, Apricot, Cameo, Chikku Nut), Supreme (Fruit Nut, Choco Nut, Mango Nut, Pista Nut, Rio Nut, Royal, Red Berry)</td><td><span class="pill pill-yes">Strong</span></td></tr>
+        <tr><td><strong>Revenue Model</strong></td><td>1. Walk-in retail sales. 2. Franchise fee + royalty. 3. Revenue share (40%) or minimum guarantee (12%). 4. GCC international stores.</td><td><span class="pill pill-med">Diversifying</span></td></tr>
+        <tr><td><strong>Pricing</strong></td><td>₹1–200/person (per reviews). Affordable mass-market positioning. Premium tiers likely ₹120–200.</td><td><span class="pill pill-yes">Competitive</span></td></tr>
+        <tr><td><strong>Distribution</strong></td><td>100% offline. Physical stores only. No delivery app presence confirmed. No packaged retail SKUs.</td><td><span class="pill pill-high">Gap</span></td></tr>
+        <tr><td><strong>Manufacturing</strong></td><td>In-store preparation. Fresh made-to-order. No central production facility identified.</td><td><span class="pill pill-med">Scalability Risk</span></td></tr>
+        <tr><td><strong>Brand Positioning</strong></td><td>"First exclusive Avil Milk retailer in India." Heritage since 1985. ISO 22000:2018 certified. Nostalgia-forward brand story.</td><td><span class="pill pill-yes">Differentiated</span></td></tr>
+        <tr><td><strong>Geography</strong></td><td>13 outlets: Perinthalmanna, Ottappalam, Edappal, Manjeri, Kottakkal, Palakkad, Pattambi, Tirur, Calicut, Malappuram, Mannarkad, Coimbatore + Dubai. GCC: UAE, Qatar, KSA.</td><td><span class="pill pill-yes">International</span></td></tr>
+        <tr><td><strong>Certifications</strong></td><td>ISO 22000:2018 Food Safety Management. Strong legitimacy signal for franchise sales.</td><td><span class="pill pill-yes">Credibility Asset</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Critical Assumption:</strong> Mouzy currently has no packaged/bottled RTD product. All revenue is tied to in-store foot traffic. This is the single biggest strategic constraint — and opportunity — in this analysis.
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:20px; margin:32px 0 16px;">Business Model Canvas</h3>
+    <table>
+      <thead><tr><th>Canvas Block</th><th>Current State</th><th>Target State (18 Months)</th></tr></thead>
+      <tbody>
+        <tr><td>Value Proposition</td><td>Authentic, hygienic, 60+ variety Avil Milk in-store</td><td>+ RTD packaged product, home delivery, subscription</td></tr>
+        <tr><td>Customer Segments</td><td>Malabari food lovers, NRIs, Gen Z, families</td><td>+ Urban health-conscious, pan-India curious consumers</td></tr>
+        <tr><td>Channels</td><td>Franchise outlets only</td><td>+ Swiggy/Zomato, Amazon, packaged retail, D2C</td></tr>
+        <tr><td>Revenue Streams</td><td>In-store sales + franchise fees</td><td>+ Marketplace sales, subscription kits, B2B catering</td></tr>
+        <tr><td>Key Resources</td><td>Brand heritage, ISO cert, 60+ recipes, franchise network</td><td>+ Central kitchen, cold chain, tech stack</td></tr>
+        <tr><td>Key Activities</td><td>Outlet operations, franchise onboarding</td><td>+ Product R&D, digital marketing, logistics</td></tr>
+        <tr><td>Cost Structure</td><td>Outlet setup, raw materials, staff</td><td>+ Packaging R&D, delivery ops, tech platform</td></tr>
+        <tr><td>Partners</td><td>Franchise partners</td><td>+ Swiggy/Zomato, Blinkit, cold-chain logistics, co-packers</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p2">
+
+  <!-- PART 2 -->
+  <div class="section">
+    <span class="section-eyebrow">Part 02</span>
+    <h2>Market Research</h2>
+    <div class="section-divider"></div>
+
+    <div class="kpi-row">
+      <div class="kpi-card"><div class="kpi-num">₹627B</div><div class="kpi-label">Kerala Dairy Market 2024</div></div>
+      <div class="kpi-card"><div class="kpi-num">12.47%</div><div class="kpi-label">Kerala Dairy CAGR 2025–33</div></div>
+      <div class="kpi-card"><div class="kpi-num">₹63.3B</div><div class="kpi-label">India Flavoured Milk 2024</div></div>
+      <div class="kpi-card"><div class="kpi-num">20.73%</div><div class="kpi-label">Flavoured Milk CAGR 2025–33</div></div>
+      <div class="kpi-card"><div class="kpi-num">₹374B</div><div class="kpi-label">India Flavoured Milk 2033E</div></div>
+    </div>
+
+    <table>
+      <thead><tr><th>Trend</th><th>What it Means for Mouzy</th><th>Opportunity</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Flavoured Milk Explosion</strong></td><td>India's flavoured milk market growing at 20.73% CAGR — fastest in dairy. Consumers moving from carbonated drinks to dairy beverages.</td><td>Avil Milk is a differentiated, authentic entry — not a copycat. First-mover in a branded, hygienic, artisanal segment.</td></tr>
+        <tr><td><strong>Premiumization</strong></td><td>Consumers paying ₹400–600 for premium dairy. Mouzy's Supreme tier is underpriced.</td><td>Launch a "Heritage Reserve" tier at ₹250–350 per serve. Target urban professionals.</td></tr>
+        <tr><td><strong>Health & Clean Label</strong></td><td>Consumers demanding ingredient transparency, no artificial additives. Avil Milk is naturally healthy — banana, rice flakes, milk, peanuts.</td><td>Market as "Kerala's original functional food." No preservatives, no artificial flavours — this is a massive selling point.</td></tr>
+        <tr><td><strong>Quick Commerce</strong></td><td>Blinkit, Zepto, Swiggy Instamart are rewriting food delivery in Tier-2 cities. 15-minute delivery is normalizing for beverages.</td><td>Mouzy's geographic footprint (Malappuram, Calicut, Palakkad) perfectly overlaps with dark store expansion zones.</td></tr>
+        <tr><td><strong>NRI Nostalgia Economy</strong></td><td>GCC has 3.5M+ Malayalis. Mouzy already has Dubai presence. The nostalgia-food market is one of the highest-LTV segments in F&B.</td><td>Launch RTD packaged format legally cleared for GCC import. Massive diaspora demand, almost zero competition.</td></tr>
+        <tr><td><strong>Regional Flavours Winning</strong></td><td>Nielsen India data shows region-specific flavours increase consumer loyalty by 30%. Avil Milk is hyper-regional — cannot be replicated soullessly.</td><td>Mouzy's identity IS its differentiation. Don't dilute it. Lean into "Malabar original" positioning aggressively.</td></tr>
+        <tr><td><strong>D2C + Online Grocery Boom</strong></td><td>Post-COVID, consumers shifted to online retail for dairy. Quick-commerce platforms are the new "modern trade."</td><td>Mouzy's current zero online presence is a gap — but also means untapped headroom with no digital saturation.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p3">
+
+  <!-- PART 3 -->
+  <div class="section">
+    <span class="section-eyebrow">Part 03</span>
+    <h2>Competitor Analysis</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Competitor</th><th>Type</th><th>Threat Level</th><th>Product</th><th>Mouzy's Edge</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Local juice shops / street vendors</strong></td><td>Direct</td><td><span class="pill pill-med">Medium</span></td><td>Ad-hoc Avil Milk, no branding</td><td>ISO certified, 60+ varieties, brand story, consistency</td></tr>
+        <tr><td><strong>Unbranded Avil Milk stalls (Malappuram)</strong></td><td>Direct</td><td><span class="pill pill-med">Medium</span></td><td>Cheap, local, familiar</td><td>Hygiene, variety innovation, experience, franchise scale</td></tr>
+        <tr><td><strong>Amul / Milma (flavoured milk RTD)</strong></td><td>Indirect</td><td><span class="pill pill-high">High (future)</span></td><td>Mass-market tetra-pack flavoured milk</td><td>Avil Milk is a unique format — not directly comparable. No banana+poha RTD from majors yet.</td></tr>
+        <tr><td><strong>Keventers / Frozen Bottle</strong></td><td>Indirect</td><td><span class="pill pill-med">Medium</span></td><td>Premium milkshake QSR chains, national rollout</td><td>They have no cultural authenticity or product differentiation from Mouzy's angle</td></tr>
+        <tr><td><strong>Chaayos / Chai Point</strong></td><td>Indirect</td><td><span class="pill pill-low">Low</span></td><td>Tea/beverage QSR</td><td>Different category entirely</td></tr>
+        <tr><td><strong>B Natural / Raw Pressery (D2C)</strong></td><td>Marketplace</td><td><span class="pill pill-low">Low</span></td><td>Packaged fruit drinks</td><td>No dairy-grain fusion; no cultural identity product</td></tr>
+        <tr><td><strong>New entrants copying Mouzy's model</strong></td><td>Future Direct</td><td><span class="pill pill-high">High</span></td><td>Any regional player seeing Mouzy's success</td><td>Speed matters — Mouzy must build brand moat (trademark, franchise density, digital presence) NOW</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Strategic Risk:</strong> Mouzy's biggest competitive threat is not who exists today — it's the well-funded F&B venture that looks at Mouzy's 336K Instagram following and franchise model and decides to copy it with VC money. This is the clock ticking on Mouzy's first-mover advantage.
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:20px; margin:28px 0 16px;">Porter's Five Forces</h3>
+    <div class="porters-grid">
+      <div class="porter-cell med">
+        <h5>Supplier Power</h5>
+        <div class="force-level" style="color:var(--saffron)">Medium</div>
+        <p>Banana, rice flakes, milk are commodity inputs. Local sourcing. Multi-supplier options exist. But quality consistency at scale requires supplier relationships. Risk: premium ingredient sourcing for Supreme tier.</p>
+      </div>
+      <div class="porter-cell low">
+        <h5>Buyer Power</h5>
+        <div class="force-level" style="color:var(--green)">Low</div>
+        <p>Individual retail customers with no bargaining power. Franchise partners have some leverage but signed agreements mitigate this. No single buyer is large enough to dictate terms.</p>
+      </div>
+      <div class="porter-cell high">
+        <h5>New Entrants</h5>
+        <div class="force-level" style="color:var(--rust)">High Threat</div>
+        <p>Low capital required to open a juice shop. Recipes can be reverse-engineered. Brand is the primary moat. Speed of franchise density and digital trademark protection are critical.</p>
+      </div>
+      <div class="porter-cell low">
+        <h5>Substitutes</h5>
+        <div class="force-level" style="color:var(--green)">Low</div>
+        <p>No direct substitute for Avil Milk exists in organised retail. Closest substitutes (milkshakes, smoothies) don't carry the cultural identity. Heritage product with genuine differentiation.</p>
+      </div>
+      <div class="porter-cell med">
+        <h5>Industry Rivalry</h5>
+        <div class="force-level" style="color:var(--saffron)">Medium</div>
+        <p>Category is nascent. Mouzy is market-maker. But as the category grows, rivalry will intensify. Regional QSR chains may add Avil Milk to menus. Mouzy must own the category definition.</p>
+      </div>
+      <div class="porter-cell low" style="background: var(--white);">
+        <h5>Overall Assessment</h5>
+        <div class="force-level" style="color:var(--green)">Favourable</div>
+        <p>Mouzy operates in a favourable competitive structure today. The window to cement category leadership is open — but closing. The next 12 months are critical for brand moat building.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="page-break" id="p4">
+
+  <!-- PART 4: SWOT -->
+  <div class="section">
+    <span class="section-eyebrow">Part 04</span>
+    <h2>SWOT Analysis</h2>
+    <div class="section-divider"></div>
+    <div class="swot-grid">
+      <div class="swot-cell swot-s">
+        <h4>Strengths</h4>
+        <ul>
+          <li>India's first & only exclusive Avil Milk brand — genuine category creator</li>
+          <li>Heritage since 1985 — 38+ year legacy, authentic brand story</li>
+          <li>ISO 22000:2018 certified — credibility for B2B, franchise, export</li>
+          <li>336K Instagram followers — significant organic community for a regional brand</li>
+          <li>60+ product varieties — deep menu that creates repeat visit incentive</li>
+          <li>FOCO franchise model — scalable with lower capital per outlet</li>
+          <li>International presence (Dubai, GCC) — proven export demand</li>
+          <li>Proven franchise economics (₹19–33L investment, 13–15 month payback, IRR up to 105%)</li>
+          <li>Compact store format (250–600 sq ft) — low real estate cost</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-w">
+        <h4>Weaknesses</h4>
+        <ul>
+          <li>Zero online ordering / delivery app presence — 100% walk-in dependent</li>
+          <li>No packaged RTD product — cannot capture retail shelf space or e-commerce</li>
+          <li>Inconsistent hygiene across franchise outlets (customer reviews flagged dirty surfaces, flies)</li>
+          <li>Geography concentrated in North Kerala — under-penetrated in Kochi, Thiruvananthapuram</li>
+          <li>No CRM / loyalty program — customer data is invisible</li>
+          <li>Website is basic, no e-commerce, no online ordering integration</li>
+          <li>Franchise quality control gaps — brand experience varies outlet to outlet</li>
+          <li>Product is perishable — limits shelf life and delivery radius for RTD expansion</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-o">
+        <h4>Opportunities</h4>
+        <ul>
+          <li>₹374B flavoured milk market by 2033 — Mouzy perfectly positioned as artisanal player</li>
+          <li>Quick commerce (Swiggy/Zomato) delivery of fresh Avil Milk within 30-min radius</li>
+          <li>RTD packaged Avil Milk — shelf-stable format for retail, export, gifting</li>
+          <li>Kerala Expat economy — 3.5M+ Malayalis in GCC alone craving authentic food</li>
+          <li>Subscription kits (DIY Avil Milk at home) — recurring revenue stream</li>
+          <li>Tier-1 city launch (Bengaluru, Chennai, Hyderabad) — large Malayali populations</li>
+          <li>Corporate catering / B2B events — office delivery, wedding packages</li>
+          <li>Health-positioning relaunch — clean label, protein-rich, no artificial additives</li>
+          <li>Co-branding with Kerala tourism narrative</li>
+          <li>Franchise expansion to Tamil Nadu, Karnataka, Hyderabad (NRI belt)</li>
+        </ul>
+      </div>
+      <div class="swot-cell swot-t">
+        <h4>Threats</h4>
+        <ul>
+          <li>Copycat risk — low barriers for regional players to imitate product</li>
+          <li>Amul / Mother Dairy launching a competing RTD Avil Milk product</li>
+          <li>Rising dairy and banana input costs squeezing margins</li>
+          <li>Franchise quality failures damaging brand reputation publicly</li>
+          <li>Quick commerce platforms demanding steep commissions (25–30%) on fresh items</li>
+          <li>NRI market dependency — Gulf economy slowdowns affect remittance-driven Kerala consumer spending</li>
+          <li>Food safety incidents at any outlet = social media reputation crisis</li>
+          <li>Well-funded F&B startup entering and scaling faster</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="page-break" id="p5">
+
+  <!-- PART 5: Customer Analysis -->
+  <div class="section">
+    <span class="section-eyebrow">Part 05</span>
+    <h2>Customer Analysis</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Customer Segment</th><th>Profile</th><th>Buying Trigger</th><th>Avg. Frequency</th><th>LTV Potential</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Core Loyalists</strong></td><td>Malabari locals, 18–40, familiar with Avil Milk culturally. Family groups.</td><td>Habit, nostalgia, evening snack ritual</td><td>2–4x/month</td><td><span class="pill pill-yes">High</span></td></tr>
+        <tr><td><strong>Gen Z Explorers</strong></td><td>16–25, food-curious, Instagram-driven. Come for the aesthetic and variety.</td><td>Social media discovery, FOMO, influencer content</td><td>1–2x/month</td><td><span class="pill pill-med">Medium</span></td></tr>
+        <tr><td><strong>NRI Visitors</strong></td><td>Gulf returnees visiting Kerala. Emotional connection to childhood food memories.</td><td>Nostalgia, gifting, sharing with non-Keralite friends</td><td>Seasonal / holiday</td><td><span class="pill pill-high">Very High (if RTD exported)</span></td></tr>
+        <tr><td><strong>Health-Conscious Urban</strong></td><td>25–40 urban professionals aware of clean eating. Drawn by banana, poha, milk ingredients.</td><td>Nutritional value, natural ingredients, no artificial additives</td><td>1–3x/month</td><td><span class="pill pill-med">Medium-High</span></td></tr>
+        <tr><td><strong>Franchise Investors</strong></td><td>Entrepreneurs, NRIs, existing business owners. Looking for food franchise opportunities.</td><td>Low investment, proven brand, FOCO model safety</td><td>One-time (high value)</td><td><span class="pill pill-high">Very High</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:20px; margin:28px 0 16px;">Pain Points & Retention Opportunities</h3>
+    <table>
+      <thead><tr><th>Pain Point (from reviews)</th><th>Retention Opportunity</th><th>Implementation</th></tr></thead>
+      <tbody>
+        <tr><td>Long wait times during evening rush</td><td>Pre-order via app / WhatsApp order-ahead</td><td>Integrate Zomato ordering or build simple WhatsApp bot</td></tr>
+        <tr><td>Hygiene concerns at some outlets</td><td>Trust-building = loyalty. Customers who trust you return 3x more often.</td><td>Visible hygiene audit scores at each outlet. Post ISO cert on walls. Monthly mystery audits.</td></tr>
+        <tr><td>No loyalty program — customers feel anonymous</td><td>Stamp card or digital loyalty points = proven 25–40% retention lift</td><td>Mouzy Loyalty Card: 10th cup free. WhatsApp number collection at POS.</td></tr>
+        <tr><td>Limited to physical location — can't order when craving hits</td><td>Delivery = captured impulse purchases</td><td>List on Swiggy/Zomato. Launch WhatsApp delivery in outlet radius.</td></tr>
+        <tr><td>No gifting option for NRIs who want to share Mouzy with family</td><td>RTD packaged format = giftable, shippable product</td><td>Partner with co-packer, develop shelf-stable Avil Milk kit (ingredients + recipe) as gift box</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p6">
+
+  <!-- PART 6 -->
+  <div class="section">
+    <span class="section-eyebrow">Part 06</span>
+    <h2>Organization Analysis</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Function</th><th>Current Assessment</th><th>Gap</th><th>Priority Fix</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Operations</strong></td><td>13 outlets running. FOCO model provides some standardization.</td><td>Franchise quality consistency is uneven (hygiene complaints on Justdial, Restaurant Guru)</td><td>Franchise operations manual + monthly audit checklist</td></tr>
+        <tr><td><strong>Sales / Franchise</strong></td><td>Active franchise recruitment via Franchise India, hotline +91-8848288155. GCC expansion underway.</td><td>No digital franchise pipeline tracking. Lead management via phone call only.</td><td>CRM for franchise leads. Online enquiry tracking.</td></tr>
+        <tr><td><strong>Marketing</strong></td><td>336K Instagram followers = strong organic. 1,799 posts. Active content creation.</td><td>No paid digital strategy visible. No Google Ads. No SEO. Website not optimised.</td><td>Launch paid Meta + Google campaigns. Hire digital marketer.</td></tr>
+        <tr><td><strong>Technology</strong></td><td>Website exists but is informational only. No ordering, no CRM, no analytics visible.</td><td>No tech stack for demand forecasting, customer data, loyalty, or delivery.</td><td>Phase 1: WhatsApp ordering. Phase 2: Delivery app integration. Phase 3: Custom app.</td></tr>
+        <tr><td><strong>Supply Chain</strong></td><td>Local in-store preparation. No centralised production.</td><td>Each outlet sources independently. Quality and cost vary. No bulk procurement advantage.</td><td>Centralised ingredient procurement for franchise network. Vendor negotiations for price lock.</td></tr>
+        <tr><td><strong>Customer Support</strong></td><td>Phone-based (outlet-level). No formal complaint resolution system.</td><td>Negative reviews on Justdial/Google unaddressed publicly. Brand reputation leakage.</td><td>Assign social media response person. Respond to every review within 24 hours.</td></tr>
+        <tr><td><strong>Leadership / Decision Making</strong></td><td>Founder-led. Family business. Strong cultural conviction.</td><td>Unclear if professional management is in place for franchise network oversight.</td><td>Hire a COO or Franchise Operations Head as headcount #1 priority.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p7">
+
+  <!-- PART 7: Marketplace -->
+  <div class="section">
+    <span class="section-eyebrow">Part 07</span>
+    <h2>Marketplace Expansion</h2>
+    <div class="section-divider"></div>
+
+    <div class="callout">
+      <strong>Context:</strong> Mouzy's product is a fresh, made-to-order beverage. Most marketplace platforms cannot serve this format today without either (A) a dark kitchen model for delivery within outlet radius, or (B) a packaged RTD product for e-commerce. Both paths are viable and should be pursued in parallel.
+    </div>
+
+    <div class="platform-grid">
+
+      <div class="platform-card">
+        <h4>Swiggy / Zomato Food Delivery <span class="pill pill-yes">YES</span></h4>
+        <div class="row"><label>Approach</label><span>Dark kitchen from existing outlets</span></div>
+        <div class="row"><label>Best Products</label><span>Top 5–8 varieties + combo cups</span></div>
+        <div class="row"><label>Delivery Radius</label><span>3–5 km from each outlet</span></div>
+        <div class="row"><label>Commission</label><span>18–30% (negotiate 20–22% as niche brand)</span></div>
+        <div class="row"><label>Margin Impact</label><span>Net margin ~18–25% (vs ~40% in-store)</span></div>
+        <div class="row"><label>Packaging Need</label><span>Sealed, spill-proof cup with lid + sticker branding</span></div>
+        <div class="row"><label>Delivery Challenge</label><span>Fresh product quality degrades after 20 min. Keep it close.</span></div>
+        <div class="row"><label>Priority</label><span><strong style="color:var(--rust)">IMMEDIATE — Start within 30 days</strong></span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">Launch plan: Onboard Calicut, Malappuram, Palakkad outlets first. Build a dedicated delivery menu with photo-ready packaging. Target 4.5+ rating within 90 days via review drive.</p>
+      </div>
+
+      <div class="platform-card">
+        <h4>Swiggy Instamart / Blinkit / Zepto <span class="pill pill-plan">PHASE 2</span></h4>
+        <div class="row"><label>Format Required</label><span>Packaged RTD product (sealed, chilled)</span></div>
+        <div class="row"><label>Challenge</label><span>Fresh Avil Milk shelf life is short. Need pasteurised/UHT format.</span></div>
+        <div class="row"><label>Solution</label><span>Partner with FSSAI-licensed co-packer for extended shelf-life format</span></div>
+        <div class="row"><label>Best SKU</label><span>250ml single-serve chilled cup (3–5 day shelf life)</span></div>
+        <div class="row"><label>Investment</label><span>₹15–30L for co-packing setup, packaging design, FSSAI approval</span></div>
+        <div class="row"><label>Commission</label><span>15–22% for packaged grocery</span></div>
+        <div class="row"><label>Timeline</label><span>6–9 months from decision</span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">This is the biggest unlock for scale. A chilled Avil Milk on Blinkit next to Amul milkshakes is a category-defining moment. Start R&D for this immediately.</p>
+      </div>
+
+      <div class="platform-card">
+        <h4>Amazon / Flipkart <span class="pill pill-plan">PHASE 3</span></h4>
+        <div class="row"><label>Format</label><span>DIY Avil Milk Kit (shelf-stable) or Avil Milk Mix Powder</span></div>
+        <div class="row"><label>SKU Examples</label><span>Mouzy Signature Mix Powder 500g, Gift Box Set, Avil flakes packet</span></div>
+        <div class="row"><label>Margin</label><span>35–50% after Amazon fees (~15–18%)</span></div>
+        <div class="row"><label>Shelf Life</label><span>Powder format = 6–12 months. Highly shippable.</span></div>
+        <div class="row"><label>NRI Opportunity</label><span>International Amazon (UAE, UK, US) for diaspora</span></div>
+        <div class="row"><label>Investment</label><span>₹5–10L for product dev, listing, FBA setup</span></div>
+        <div class="row"><label>Timeline</label><span>9–12 months</span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">A Mouzy Mix Powder on Amazon.ae sold to Malayali expats is an untapped gold mine. Price premium of 2–3x Indian price is justified by nostalgia and authenticity.</p>
+      </div>
+
+      <div class="platform-card">
+        <h4>Zomato Hyperpure / B2B <span class="pill pill-plan">PHASE 2</span></h4>
+        <div class="row"><label>Model</label><span>Sell pre-made Avil Milk base/mix to restaurants</span></div>
+        <div class="row"><label>Target</label><span>Kerala restaurants, Malabar cuisine chains, cafes</span></div>
+        <div class="row"><label>Value Prop</label><span>Authentic branded Mouzy base — restaurants can upsell "Mouzy Avil Milk" on menu</span></div>
+        <div class="row"><label>Revenue</label><span>Recurring B2B orders. High volume, lower margin per unit.</span></div>
+        <div class="row"><label>Risk</label><span>Quality control. Restaurants may dilute brand experience.</span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">License the brand to restaurants with strict quality guidelines and Mouzy-branded cups. Revenue-share model.</p>
+      </div>
+
+      <div class="platform-card">
+        <h4>WhatsApp Commerce (D2C) <span class="pill pill-yes">IMMEDIATE</span></h4>
+        <div class="row"><label>Format</label><span>Order for pickup / local delivery via WhatsApp Business</span></div>
+        <div class="row"><label>Investment</label><span>₹0–50K (WhatsApp Business API)</span></div>
+        <div class="row"><label>Margin</label><span>Near 100% (no platform commission)</span></div>
+        <div class="row"><label>Use Case</label><span>Birthday party orders, office delivery, advance orders</span></div>
+        <div class="row"><label>Timeline</label><span>Can launch in 2 weeks</span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">Start immediately. Collect customer WhatsApp numbers at POS. Build a basic catalogue. This is the fastest revenue unlock with zero platform cost.</p>
+      </div>
+
+      <div class="platform-card">
+        <h4>ONDC <span class="pill pill-plan">PHASE 2</span></h4>
+        <div class="row"><label>Opportunity</label><span>Government's Open Network for Digital Commerce. Low commission (2–5%).</span></div>
+        <div class="row"><label>Advantage</label><span>Dramatically lower commission than Swiggy/Zomato</span></div>
+        <div class="row"><label>Status</label><span>Growing traction in Kerala with Magicpin, Paytm integration</span></div>
+        <div class="row"><label>Timeline</label><span>3–6 months</span></div>
+        <p style="font-size:12px; color:var(--muted); margin-top:12px;">List on ONDC via a Seller App partner. Ideal for maintaining margins while building digital ordering habit among customers.</p>
+      </div>
+
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:20px; margin:28px 0 16px;">Marketplace Optimization Playbook (for Swiggy/Zomato)</h3>
+    <table>
+      <thead><tr><th>Element</th><th>Best Practice</th><th>Mouzy Specific Action</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Product Photography</strong></td><td>White background, top-down + 45° shot. Show ingredients visually.</td><td>Hire food photographer for one-day shoot. Shoot top 10 varieties. Cost: ₹15–25K. ROI: immediate conversion lift.</td></tr>
+        <tr><td><strong>Menu SEO</strong></td><td>Use keywords customers search: "avil milk near me", "banana milk", "aval milk", "Kerala drink"</td><td>Title products: "Mouzy Signature Avil Milk — Badam" not just "Badam". Add description with keywords.</td></tr>
+        <tr><td><strong>Ratings Strategy</strong></td><td>First 100 orders are make-or-break. Drive 5-star reviews from loyal existing customers first.</td><td>On launch week, inform loyal walk-in customers to order on app. Offer a free add-on for first online order.</td></tr>
+        <tr><td><strong>Promotions</strong></td><td>20% discount on first order. BOGO on Tuesdays (slow day). Free upgrade on birthdays.</td><td>Launch with "First Order 20% Off" + "Free Peanut Topping" (low cost, high perceived value)</td></tr>
+        <tr><td><strong>Packaging for Delivery</strong></td><td>Spill-proof lid. Branded sticker. Tamper-evident seal. Keep cold with ice pack for 5+ km delivery.</td><td>Invest ₹3–5L in custom branded cups, lids, delivery bags. This IS the brand experience for delivery customers.</td></tr>
+        <tr><td><strong>Launch Plan</strong></td><td>Soft launch 2 outlets → optimize → expand</td><td>Launch Calicut + Malappuram first. Target 50 orders/day per outlet in 60 days. Then expand.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p8">
+
+  <!-- PART 8: SCALING OPPORTUNITIES -->
+  <div class="section">
+    <span class="section-eyebrow">Part 08</span>
+    <h2>Scaling Opportunities — Top 20</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>#</th><th>Opportunity</th><th>Impact</th><th>Difficulty</th><th>Investment</th><th>Timeline</th><th>ROI Est.</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Swiggy/Zomato delivery from existing outlets</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹50K–1L</td><td>30 days</td><td>3–5x in 90 days</td></tr>
+        <tr><td>2</td><td><strong>WhatsApp D2C ordering + loyalty program</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹10–50K</td><td>2 weeks</td><td>Immediate</td></tr>
+        <tr><td>3</td><td><strong>Franchise expansion — Bengaluru (large Malayali base)</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹20–40L/outlet</td><td>3–6 months</td><td>IRR 80–105%</td></tr>
+        <tr><td>4</td><td><strong>RTD chilled Avil Milk — co-packed, 3–5 day shelf life</strong></td><td><span class="pill pill-high">Very High</span></td><td><span class="pill pill-high">High</span></td><td>₹20–40L</td><td>6–9 months</td><td>10x category expansion</td></tr>
+        <tr><td>5</td><td><strong>GCC expansion — Abu Dhabi, Sharjah franchise</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹30–60L/outlet</td><td>4–8 months</td><td>Revenue 2–3x Indian outlet (premium pricing)</td></tr>
+        <tr><td>6</td><td><strong>Mouzy DIY Kit (shelf-stable) on Amazon India + Amazon UAE</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹10–20L</td><td>6–9 months</td><td>High margin, zero delivery cost</td></tr>
+        <tr><td>7</td><td><strong>Premium "Heritage Reserve" tier — ₹250–350 price point</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹1–5L (R&D)</td><td>60 days</td><td>30–40% margin improvement</td></tr>
+        <tr><td>8</td><td><strong>Corporate catering / bulk orders for offices, events</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>Minimal</td><td>30 days</td><td>High ticket, recurring</td></tr>
+        <tr><td>9</td><td><strong>Rebranded packaging — Mouzy as a visual identity system</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹3–8L</td><td>60 days</td><td>Indirect: ASP uplift + shareability</td></tr>
+        <tr><td>10</td><td><strong>Franchise expansion — Chennai (Keralite population)</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹25–40L</td><td>3–6 months</td><td>New market entry</td></tr>
+        <tr><td>11</td><td><strong>Kochi franchise — capital city, Tier-1 customer base</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹20–35L</td><td>2–4 months</td><td>High revenue outlet</td></tr>
+        <tr><td>12</td><td><strong>Health repositioning — "Kerala's Original Superfood Drink"</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹2–5L (content)</td><td>30 days</td><td>New audience acquisition</td></tr>
+        <tr><td>13</td><td><strong>Influencer partnership strategy — Kerala food bloggers + NRI channels</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹5–15L/year</td><td>30 days</td><td>3–5x social reach</td></tr>
+        <tr><td>14</td><td><strong>Mouzy Gifting — curated gift boxes for Eid, Onam, Christmas</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹2–5L</td><td>60 days</td><td>High-margin seasonal revenue</td></tr>
+        <tr><td>15</td><td><strong>B2B supply to Kerala restaurants — licensed Mouzy base</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹5–15L</td><td>3–6 months</td><td>Recurring B2B revenue</td></tr>
+        <tr><td>16</td><td><strong>Mouzy subscription box (monthly Avil Milk kit delivery)</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹3–8L</td><td>3–4 months</td><td>Recurring revenue + LTV increase</td></tr>
+        <tr><td>17</td><td><strong>School / college canteen tie-ups — low cost, high volume</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>Minimal</td><td>30 days</td><td>Volume + brand awareness</td></tr>
+        <tr><td>18</td><td><strong>Saudi Arabia / Qatar franchise expansion</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-high">High</span></td><td>₹50–80L</td><td>9–15 months</td><td>Very high revenue per outlet</td></tr>
+        <tr><td>19</td><td><strong>Kerala tourism tie-up (airports, hotel lobbies, cultural events)</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹5–10L</td><td>4–6 months</td><td>Premium brand positioning</td></tr>
+        <tr><td>20</td><td><strong>Blinkit / Zepto listing (packaged format) — North Kerala first</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-high">High</span></td><td>₹25–40L</td><td>9–12 months</td><td>Category creation moment</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p9">
+
+  <!-- PART 9: OPERATIONS -->
+  <div class="section">
+    <span class="section-eyebrow">Part 09</span>
+    <h2>Operational Improvements</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Area</th><th>Current Problem</th><th>Recommended Fix</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Quality Control</strong></td><td>Hygiene inconsistency across franchises. Dirty cloths, flies reported at some locations.</td><td>Monthly unannounced hygiene audits. Digital audit checklist via mobile app. Franchise scoring system — public on website.</td><td>Brand reputation, Google ratings, repeat visits</td></tr>
+        <tr><td><strong>Standardization</strong></td><td>Each outlet may prepare recipes slightly differently.</td><td>Create precise recipe cards with gram-level measurements. Calibrated scoops and measures. Training videos for all 60+ varieties.</td><td>Consistent taste experience = loyalty</td></tr>
+        <tr><td><strong>Central Procurement</strong></td><td>Franchisees source ingredients independently — price and quality vary.</td><td>Negotiate centralized vendor contracts for banana, aval, milk, peanuts. Distribute via Mouzy Supply Hub.</td><td>Cost reduction 10–20%. Quality control.</td></tr>
+        <tr><td><strong>Inventory Management</strong></td><td>No visibility into stock levels at franchises. Likely wastage of perishables.</td><td>Simple daily stock reporting via WhatsApp to HQ. Introduce par-level tracking. Phase to ERP tool.</td><td>Reduce wastage 15–25%</td></tr>
+        <tr><td><strong>Packaging for Delivery</strong></td><td>In-store cups not designed for delivery (spill, melt, condensation).</td><td>Invest in sealed delivery cups with tamper-proof lids. Insulated delivery bags for riders. Mouzy-branded.</td><td>Delivery quality, fewer complaints, 5-star reviews</td></tr>
+        <tr><td><strong>Staff Training</strong></td><td>Service complaints (long wait, staff confusion during rush).</td><td>Standardized SOPs for rush-hour station management. Divide roles: prep, assembly, service. Train with video modules.</td><td>Service speed 2x, reduced complaints</td></tr>
+        <tr><td><strong>AI Demand Forecasting</strong></td><td>No data on which items sell most on which day/time. Manual guesswork.</td><td>Capture daily POS data (even in Google Sheets to start). Use pattern analysis to predict peak demand and reduce ingredient waste.</td><td>5–15% waste reduction, better prep planning</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p10">
+
+  <!-- PART 10: MARKETING -->
+  <div class="section">
+    <span class="section-eyebrow">Part 10</span>
+    <h2>Marketing Strategy</h2>
+    <div class="section-divider"></div>
+
+    <div class="flywheel">
+      <h3>Mouzy Growth Flywheel</h3>
+      <div class="flywheel-steps">
+        <div class="flywheel-step"><strong>Heritage</strong>Brand story drives curiosity</div>
+        <span class="flywheel-arrow">→</span>
+        <div class="flywheel-step"><strong>Content</strong>Reels + UGC drive discovery</div>
+        <span class="flywheel-arrow">→</span>
+        <div class="flywheel-step"><strong>Experience</strong>First visit = emotional hook</div>
+        <span class="flywheel-arrow">→</span>
+        <div class="flywheel-step"><strong>Share</strong>Customers post = free acquisition</div>
+        <span class="flywheel-arrow">→</span>
+        <div class="flywheel-step"><strong>Franchise</strong>New outlets enter new markets</div>
+        <span class="flywheel-arrow">→</span>
+        <div class="flywheel-step"><strong>Heritage</strong>Cycle repeats at scale</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Channel</th><th>Strategy</th><th>Specific Tactics</th><th>Investment</th><th>Expected Output</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Instagram (Organic)</strong></td><td>Own the "Avil Milk" niche on Instagram. Be the reference brand.</td><td>3 Reels/week: "60 varieties in 60 seconds" series. Recipe explainer. Behind-the-scenes origin story. Outlet spotlight.</td><td>₹30–60K/month (content creator)</td><td>Reach 500K+ followers in 12 months</td></tr>
+        <tr><td><strong>YouTube</strong></td><td>Long-form brand documentary. "The Mouzy Story" — family, nostalgia, 1985 origin.</td><td>1 anchor documentary (10–15 min). Short clips from it feed Instagram + Facebook. NRI audience on YouTube is huge.</td><td>₹2–5L (one-time production)</td><td>100K+ views, franchise enquiries</td></tr>
+        <tr><td><strong>Influencer Marketing</strong></td><td>Kerala food micro-influencers (50K–500K) are more effective than mega-influencers for this audience.</td><td>Identify 15–20 Kerala food bloggers. Invite to outlets. Pay ₹5K–25K per post. Focus on NRI YouTubers based in Gulf.</td><td>₹10–20L/year</td><td>3–5x reach expansion</td></tr>
+        <tr><td><strong>Google Ads (Search)</strong></td><td>Capture intent: "avil milk near me", "best avil milk Kerala"</td><td>Run local search ads for each outlet location. ₹5–10K/outlet/month budget.</td><td>₹1–2L/month</td><td>30–50 new walk-ins/week per outlet</td></tr>
+        <tr><td><strong>Meta Ads (Facebook/Instagram)</strong></td><td>Reach Malayali audiences in UAE, Qatar, UK, USA with nostalgia content</td><td>Retarget Instagram followers. Lookalike audiences. Franchise-seeker targeting. Language: Malayalam.</td><td>₹2–5L/month</td><td>Franchise leads + brand awareness</td></tr>
+        <tr><td><strong>WhatsApp Community</strong></td><td>Build a "Mouzy Lovers" community. Share new flavours, offers, stories.</td><td>Create WhatsApp channel (Broadcasts). 5K loyal customers = powerful word-of-mouth engine. Announce new outlets here first.</td><td>₹0 (time investment only)</td><td>Retention + WOM referrals</td></tr>
+        <tr><td><strong>Corporate Sales</strong></td><td>Office catering for companies in Calicut, Malappuram, Palakkad, Kochi</td><td>Create a corporate bulk-order rate card. Appoint one B2B sales person. Target IT parks, educational institutions, event companies.</td><td>₹3–5L/year</td><td>₹20–50L incremental annual revenue</td></tr>
+        <tr><td><strong>Offline Activations</strong></td><td>Presence at Kerala cultural events, Onam melas, food festivals, NRI meets</td><td>Mouzy pop-up stall at events. Sample 500 cups at key events. Brand visibility in Muslim community events (strong Malabar customer base).</td><td>₹1–3L/event</td><td>New customer acquisition + PR</td></tr>
+        <tr><td><strong>Referral Program</strong></td><td>"Bring a friend, get a free topping" program</td><td>Give loyal customers a WhatsApp referral code. Every referred customer = ₹20 cashback to referrer. Extremely low cost per acquisition.</td><td>₹0 product cost (high margin float)</td><td>15–25% new customer acquisition boost</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p11">
+
+  <!-- PART 11: FINANCIAL -->
+  <div class="section">
+    <span class="section-eyebrow">Part 11</span>
+    <h2>Financial Opportunities</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Opportunity</th><th>Mechanism</th><th>Revenue Potential</th><th>Margin Impact</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Premium Tier Launch</strong></td><td>Introduce ₹250–350 "Heritage Reserve" varieties with premium ingredients (saffron, imported nuts). ASP moves from ₹80 to ₹120 average.</td><td>+20–35% revenue per outlet</td><td>+8–12% margin</td></tr>
+        <tr><td><strong>Delivery Revenue</strong></td><td>Swiggy/Zomato listing captures orders that currently walk away. New incremental revenue stream.</td><td>₹50–100K/month per outlet (assumption: 30–50 orders/day × ₹120 ASP)</td><td>-8–10% vs walk-in (commission)</td></tr>
+        <tr><td><strong>Combo / Bundle Pricing</strong></td><td>"Mouzy Couple Pack" (2 cups + free topping), "Family of 4" bundle. Increases ticket size 40–60%.</td><td>+15–25% per transaction revenue</td><td>Neutral (economies of prep)</td></tr>
+        <tr><td><strong>Franchise Fee Revenue</strong></td><td>At ₹19–33L per franchise, signing 10 new franchises/year = ₹1.9–3.3 Cr in fees alone (before royalty)</td><td>₹2–5 Cr/year at scale</td><td>Very high margin income</td></tr>
+        <tr><td><strong>RTD Packaged Product</strong></td><td>Sell chilled Avil Milk via Instamart/Amazon. Margin 35–50% after co-packing and platform fees.</td><td>₹5–20 Cr potential in 3 years</td><td>+15–20% vs current</td></tr>
+        <tr><td><strong>GCC Premium Pricing</strong></td><td>Outlets in UAE, Qatar priced 2–3x India pricing (AED 15–25 per cup = ₹340–570)</td><td>₹1–3 Cr/outlet/year additional</td><td>Higher ASP, similar cost structure</td></tr>
+        <tr><td><strong>Subscription Kits</strong></td><td>₹499–799/month DIY kit with avil, banana powder, flavour sachets</td><td>1000 subscribers = ₹60–96L/year recurring</td><td>35–45% margin</td></tr>
+        <tr><td><strong>Corporate Bulk Orders</strong></td><td>Negotiate minimum 500-cup orders for events, offices. Volume discount still profitable.</td><td>₹20–60L/year incremental</td><td>Lower but predictable</td></tr>
+        <tr><td><strong>Central Procurement Savings</strong></td><td>Bulk raw material purchase for franchise network. 10–15% input cost reduction.</td><td>Cost savings ₹30–80L/year at network scale</td><td>+5–8% network-wide margin</td></tr>
+      </tbody>
+    </table>
+
+    <div class="kpi-row">
+      <div class="kpi-card"><div class="kpi-num">₹15–25L</div><div class="kpi-label">Estimated Monthly Revenue/Outlet (Assumption)</div></div>
+      <div class="kpi-card"><div class="kpi-num">40–50%</div><div class="kpi-label">Estimated Gross Margin In-Store</div></div>
+      <div class="kpi-card"><div class="kpi-num">13–15mo</div><div class="kpi-label">Franchise Payback Period</div></div>
+      <div class="kpi-card"><div class="kpi-num">105%</div><div class="kpi-label">Claimed Franchise IRR</div></div>
+      <div class="kpi-card"><div class="kpi-num">₹100Cr+</div><div class="kpi-label">Revenue Potential (5 Years, 50+ Outlets + RTD)</div></div>
+    </div>
+  </div>
+
+  <hr class="page-break" id="p12">
+
+  <!-- PART 12: TECH -->
+  <div class="section">
+    <span class="section-eyebrow">Part 12</span>
+    <h2>Technology Roadmap</h2>
+    <div class="section-divider"></div>
+
+    <table>
+      <thead><tr><th>Phase</th><th>Technology</th><th>Purpose</th><th>Tool Options</th><th>Investment</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 1</td><td><strong>WhatsApp Business API</strong></td><td>D2C ordering, loyalty, customer comms</td><td>Interakt, Wati, AiSensy</td><td>₹2–6K/month</td><td>Week 1–2</td></tr>
+        <tr><td>Phase 1</td><td><strong>Google Business Optimization</strong></td><td>Improve local search ranking, collect reviews</td><td>Google Business Profile</td><td>₹0</td><td>Week 1</td></tr>
+        <tr><td>Phase 1</td><td><strong>Swiggy/Zomato Integration</strong></td><td>Food delivery from outlets</td><td>Swiggy for Restaurants, Zomato Partner</td><td>₹0 setup (commish only)</td><td>Month 1</td></tr>
+        <tr><td>Phase 1</td><td><strong>Basic POS + Daily Reporting</strong></td><td>Track daily sales, item-level data, franchise reporting</td><td>Petpooja, Posist, or even Google Sheets</td><td>₹1–3K/outlet/month</td><td>Month 1–2</td></tr>
+        <tr><td>Phase 2</td><td><strong>CRM — Customer Data Platform</strong></td><td>Build customer profiles, loyalty points, segmented campaigns</td><td>Zoho CRM, HubSpot Free, or LeadSquared</td><td>₹5–15K/month</td><td>Month 2–4</td></tr>
+        <tr><td>Phase 2</td><td><strong>Website Revamp + Online Ordering</strong></td><td>Accept advance orders, show menu, franchise enquiries</td><td>Shopify, custom WordPress, or Dotpe</td><td>₹2–8L one-time</td><td>Month 2–3</td></tr>
+        <tr><td>Phase 2</td><td><strong>Franchise Operations App</strong></td><td>Daily stock updates, hygiene checklists, performance dashboards</td><td>Custom build on Glide/Notion or outsourced</td><td>₹5–15L</td><td>Month 3–6</td></tr>
+        <tr><td>Phase 3</td><td><strong>AI Demand Forecasting</strong></td><td>Predict ingredient demand by outlet, reduce wastage</td><td>Custom ML or Mosaic/Netstock tool</td><td>₹10–25L</td><td>Month 6–12</td></tr>
+        <tr><td>Phase 3</td><td><strong>ERP System</strong></td><td>Centralized inventory, procurement, financials across franchise network</td><td>Zoho Books + Inventory, or Tally Prime</td><td>₹5–20L</td><td>Month 6–12</td></tr>
+        <tr><td>Phase 3</td><td><strong>Mouzy Mobile App</strong></td><td>Loyalty, ordering, rewards, new flavour discovery</td><td>Custom build or Dotpe/Thrive white-label</td><td>₹20–50L</td><td>Month 9–18</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="page-break" id="p13">
+
+  <!-- PART 13: 90-DAY PLAN -->
+  <div class="section">
+    <span class="section-eyebrow">Part 13</span>
+    <h2>90-Day Action Plan</h2>
+    <div class="section-divider"></div>
+
+    <div class="roadmap">
+      <div class="roadmap-col">
+        <h4>Days 1–30</h4>
+        <span class="period">Foundation Sprint</span>
+
+        <div class="roadmap-item">
+          <strong>List on Swiggy + Zomato (2 pilot outlets)</strong>
+          <span>Owner: Marketing Lead | KPI: Go-live by Day 20</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Optimize Google Business Profiles (all 13 outlets)</strong>
+          <span>Owner: Digital Team | KPI: 4.5+ avg Google rating</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Launch WhatsApp Business ordering + broadcast list</strong>
+          <span>Owner: Ops Team | KPI: 500 customers on list by Day 30</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Respond to all Justdial/Google/Zomato reviews (backlog)</strong>
+          <span>Owner: Founder / Marketing | KPI: 100% review response rate</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Commission professional food photography (top 10 products)</strong>
+          <span>Owner: Marketing | KPI: Complete by Day 21 | Cost: ₹15–25K</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Create franchise operations audit checklist</strong>
+          <span>Owner: COO / Operations | KPI: Deployed to all 13 outlets</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Launch "Heritage Reserve" premium tier (2–3 new varieties)</strong>
+          <span>Owner: R&D + Marketing | KPI: ₹250+ price point, listed on all menus</span>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <h4>Days 31–60</h4>
+        <span class="period">Revenue Expansion</span>
+
+        <div class="roadmap-item">
+          <strong>Expand Swiggy/Zomato to all operational outlets</strong>
+          <span>Owner: Ops | KPI: 50+ orders/day per outlet by Day 60</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Launch Meta Ads — franchise + brand awareness (Malayalam)</strong>
+          <span>Owner: Marketing | KPI: 50+ franchise enquiries/month</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Begin influencer partnership (5 Kerala micro-influencers)</strong>
+          <span>Owner: Marketing | KPI: 5 posts live, 500K+ reach</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Negotiate Kochi franchise deal (sign 1st franchise)</strong>
+          <span>Owner: Founder | KPI: MOU signed by Day 60</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Deploy POS system + daily sales tracking (all outlets)</strong>
+          <span>Owner: Tech/Ops | KPI: Daily report available to HQ</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>B2B corporate sales outreach — Calicut + Palakkad offices</strong>
+          <span>Owner: Sales | KPI: 3 corporate accounts signed</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Initiate RTD product R&D + FSSAI regulatory mapping</strong>
+          <span>Owner: Founder + Food Technologist | KPI: Formulation brief ready</span>
+        </div>
+      </div>
+
+      <div class="roadmap-col">
+        <h4>Days 61–90</h4>
+        <span class="period">Scale Prep</span>
+
+        <div class="roadmap-item">
+          <strong>Website v2 launch — online ordering + franchise enquiry CRM</strong>
+          <span>Owner: Tech | KPI: 200+ monthly website leads captured</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Launch Bengaluru franchise marketing campaign</strong>
+          <span>Owner: Sales + Marketing | KPI: 10 qualified Bengaluru leads</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>ONDC listing (low-commission delivery alternative)</strong>
+          <span>Owner: Ops | KPI: 2 outlets listed on ONDC</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Loyalty program soft-launch (stamp card + WhatsApp-based)</strong>
+          <span>Owner: Marketing + Ops | KPI: 1000 active loyalty members</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Begin co-packer sourcing for RTD product</strong>
+          <span>Owner: Ops | KPI: 3 co-packer quotes received, 1 MOU</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Onam / festive gifting launch (gift box product)</strong>
+          <span>Owner: Marketing | KPI: 200+ gift box pre-orders</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>90-Day business review — revenue, delivery metrics, franchise pipeline</strong>
+          <span>Owner: Founder | KPI: Full dashboard review + 6-month plan updated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="page-break" id="p14">
+
+  <!-- PART 14: FOUNDER -->
+  <div class="section">
+    <span class="section-eyebrow">Part 14</span>
+    <h2>Founder-Level Recommendations</h2>
+    <div class="section-divider"></div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Do First</span>
+      <h4>Get your product onto Swiggy and Zomato this week.</h4>
+      <p>You have a 336K Instagram community and zero delivery presence. Every evening that someone in Calicut or Malappuram craves Avil Milk and can't reach your outlet — that revenue goes to no one. You're not losing to a competitor; you're losing to friction. This is the fastest revenue unlock in your business right now. Cost: nearly zero. Revenue impact: potentially ₹30–80L/year across outlets.</p>
+      <div class="roi-line">Timeline: 2–3 weeks. ROI: Immediate.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Stop Doing</span>
+      <h4>Stop growing franchise count without fixing quality consistency first.</h4>
+      <p>Your reviews reveal hygiene and service inconsistencies. A Justdial review that says "dirty cloth" or "flies in the shop" at a Mouzy outlet can kill a franchise deal and damage the brand you've built since 1985. One viral negative review will cost you more than 10 marketing campaigns to undo. Pause aggressive franchise expansion until you have a working audit system, ops manual, and mystery shopper program deployed.</p>
+      <div class="roi-line">Cost of fixing: ₹2–5L. Cost of ignoring: priceless (brand damage).</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Invest Here</span>
+      <h4>Invest in the RTD packaged product. This is the ₹100 Cr bet.</h4>
+      <p>Your entire current business is captive to physical store foot traffic. A packaged, chilled, 250ml Avil Milk product (co-packed, extended shelf life, FSSAI compliant) can sit in every Instamart dark store, on Amazon, in hotel minibars, in airport retail, and be exported to the GCC. The heritage story, the ISO certification, the authentic recipe — all of these become an incredible brand story for a packaged product. No one has done this at scale. The window is open.</p>
+      <div class="roi-line">Investment: ₹25–40L. Revenue potential: ₹5–20 Cr in 3 years.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Hidden Leverage</span>
+      <h4>Your NRI audience is your most underserved, highest-value customer.</h4>
+      <p>A Malayali in Dubai who grew up eating Avil Milk from a street stall in Perinthalmanna will pay AED 25 (₹570) for a cup at your Dubai outlet without blinking. And they'll share it on social media and cry with joy. You have a Dubai outlet. You have GCC countries listed on your Instagram. But you have no packaged product to ship to them, no nostalgic gift box to send home with them, no subscription kit for their family in Riyadh. The NRI Nostalgia Economy is real, emotional, and massively undermonetized by you.</p>
+      <div class="roi-line">Unlock: RTD product + Amazon UAE + WhatsApp-based ordering for NRIs.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Cut This</span>
+      <h4>Stop treating the website as a brochure. It's your 24/7 salesperson and you've put it to sleep.</h4>
+      <p>Your website has no ordering functionality, no loyalty sign-up, no franchise lead capture form with CRM integration, no SEO-optimised content about Avil Milk. It's essentially a PDF you've put online. Every week that passes without fixing this is lost franchise leads, lost direct orders, and lost Google search traffic for "avil milk Calicut" that goes to a competitor or an unbranded shop.</p>
+      <div class="roi-line">Fix cost: ₹2–8L. Return: 50+ monthly franchise leads + digital ordering capability.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Biggest Strategic Mistake</span>
+      <h4>Defining yourself as a "shop" instead of a "brand."</h4>
+      <p>Mouzy is not a juice shop. Mouzy is the official owner of Avil Milk as a category. The difference between a shop and a brand is the difference between ₹10 Cr and ₹100 Cr. Chaayos didn't just sell chai — they became the brand for the chai experience. Keventers didn't just sell milkshakes. You must actively, aggressively OWN the Avil Milk category in Indian consumer consciousness. Trademark every variant name. File for GI tag support if applicable. Publish the brand story everywhere. Build the IP, not just the outlets.</p>
+    </div>
+  </div>
+
+  <hr class="page-break" id="p15">
+
+  <!-- PART 15: MILLION DOLLAR INSIGHTS -->
+  <div class="section">
+    <span class="section-eyebrow">Part 15</span>
+    <h2>Million-Dollar Insights</h2>
+    <div class="section-divider"></div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Insight 01 — Category Ownership</span>
+      <h4>You are not selling Avil Milk. You are inventing a category. Act like it.</h4>
+      <p><strong>Problem:</strong> Mouzy presents itself as a specialty QSR. But the real opportunity is category creation — defining and owning "Avil Milk" as a recognised, premium food category in Indian consumer consciousness.</p>
+      <p><strong>Observation:</strong> There is no "Avil Milk" brand on Swiggy, Amazon, or in supermarkets. The category is uncontested. But it won't stay that way. Once Mouzy proves the economics, copycats and well-funded competitors enter.</p>
+      <p><strong>Strategic Reasoning:</strong> Category creators who move fast build 3 advantages: brand recall ("Avil Milk = Mouzy"), distribution density, and consumer habit formation. All three compound over time.</p>
+      <p><strong>Execution:</strong> Register "Avil Milk" as a trademark for F&B. Launch RTD product. Get listed on all delivery platforms. Publish educational content about Avil Milk (SEO: "what is avil milk", "avil milk health benefits"). Own the search.</p>
+      <div class="roi-line">Expected ROI: First-mover brand premium of 2–4x vs follower brands in 5 years.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Insight 02 — The NRI Nostalgia Product-Market Fit</span>
+      <h4>The most loyal customer you've never sold to lives in Dubai, not Malappuram.</h4>
+      <p><strong>Problem:</strong> Mouzy has a Dubai outlet and GCC social media mentions — but no product that can be purchased, gifted, or shipped internationally.</p>
+      <p><strong>Observation:</strong> Kerala has the highest per-capita NRI population of any Indian state. Nostalgia-driven food purchases by diaspora communities command 2–5x price premiums. Mouzy's authentic heritage story is perfectly calibrated for this audience.</p>
+      <p><strong>Strategic Reasoning:</strong> An NRI who grew up eating Avil Milk from a cart in Perinthalmanna is an incredibly high-value customer. Their willingness to pay is high, their loyalty is emotional and irrational (in the best way), and their social sharing amplifies the brand back to India.</p>
+      <p><strong>Execution:</strong> Launch "Mouzy Nostalgia Box" — a curated gift kit with Avil flakes, banana powder, flavour sachets, and recipe cards. Price at ₹999–1499 for India, AED 50–75 for GCC. Sell on Amazon UAE and WhatsApp. Market with nostalgic content ("ഒരിക്കൽ കൂടി ആ രുചി" — "That taste, once more").</p>
+      <div class="roi-line">Expected ROI: ₹5–15 Cr revenue potential from diaspora market in 3 years at minimal incremental cost.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Insight 03 — The Instagram Flywheel Gap</span>
+      <h4>336K followers and zero revenue from them. This is a monetization failure.</h4>
+      <p><strong>Problem:</strong> Mouzy has built an extraordinary Instagram community for a regional food brand. But there is no WhatsApp link, no online order button, no loyalty sign-up, no product to buy. The community exists but generates no direct revenue.</p>
+      <p><strong>Observation:</strong> Industry benchmark: food brands with 300K+ followers that have even basic digital ordering see 5–15% follower conversion to purchasers annually.</p>
+      <p><strong>Strategic Reasoning:</strong> Even at 1% conversion with ₹500 average order value: 3,360 customers × ₹500 = ₹16.8L from one social post. Currently: ₹0 from Instagram following.</p>
+      <p><strong>Execution:</strong> Add "Order Now" link in bio (WhatsApp Business). Launch Instagram Shopping with Mouzy Nostalgia Kits. Run one limited-edition flavour exclusively for Instagram followers ("Mouzy Community Special"). Create urgency and belonging.</p>
+      <div class="roi-line">Expected ROI: ₹1–5 Cr incremental revenue from social monetization in 12 months.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Insight 04 — The Franchise Quality Paradox</span>
+      <h4>Your franchise expansion strategy is working against your brand strategy.</h4>
+      <p><strong>Problem:</strong> Mouzy is expanding franchises (13 outlets) while hygiene and service reviews remain inconsistent. Each negative public review is permanent brand damage that no marketing budget can fully undo.</p>
+      <p><strong>Observation:</strong> The Justdial and Restaurant Guru reviews show a pattern: flavour is universally praised, but cleanliness and service vary dramatically. This suggests a franchise operations gap, not a product gap.</p>
+      <p><strong>Strategic Reasoning:</strong> In QSR, the brand is only as strong as its weakest outlet. One viral video of an unhygienic Mouzy kitchen can collapse 38 years of brand equity in 48 hours. McDonald's brand moat is built not just on taste but on predictable consistency.</p>
+      <p><strong>Execution:</strong> Implement a mandatory monthly hygiene audit program. Publish hygiene scores publicly in stores (turn a weakness into a transparency strength). Franchise renewal contingent on audit performance. Build ops manual with photo evidence standards.</p>
+      <div class="roi-line">Expected ROI: 20–30% increase in repeat visit rate. Prevention of brand crisis that could cost ₹10+ Cr in lost franchise value.</div>
+    </div>
+
+    <div class="insight-card">
+      <span class="insight-tag">Insight 05 — The Health Narrative Opportunity</span>
+      <h4>Avil Milk is one of the healthiest "street foods" in India. You haven't told anyone.</h4>
+      <p><strong>Problem:</strong> Mouzy markets on taste, heritage, and variety. But the product's actual ingredients — banana (potassium, fibre), rice flakes/poha (iron, complex carbs), milk (protein, calcium), peanuts (healthy fats, protein) — are an extraordinary clean-label health story.</p>
+      <p><strong>Observation:</strong> India's flavoured milk market is growing at 20.73% CAGR, driven significantly by health-conscious consumers. "Natural," "no preservatives," "real ingredients" are the fastest-growing claims in this segment.</p>
+      <p><strong>Strategic Reasoning:</strong> Mouzy's product is inherently more nutritious than Amul Kool, Frooti, or any commercial milkshake. Positioning it this way opens a completely new customer segment — urban health-conscious professionals who currently avoid "street food" but would embrace Mouzy if it were positioned as a functional food.</p>
+      <p><strong>Execution:</strong> Commission a nutritional label for Avil Milk. Add "Contains: Banana, Rice Flakes, Fresh Milk, Peanuts. No Artificial Colours. No Preservatives." to all packaging and social content. Launch "Kerala's Original Superfood" campaign. Partner with fitness influencers.</p>
+      <div class="roi-line">Expected ROI: New urban customer segment acquisition. Price premium justification for Heritage Reserve tier. Potential for health chain distribution.</div>
+    </div>
+
+  </div>
+
+  <!-- RISK MATRIX -->
+  <div class="section">
+    <span class="section-eyebrow">Risk Matrix</span>
+    <h2>Key Risks & Mitigations</h2>
+    <div class="section-divider"></div>
+
+    <div class="risk-item">
+      <div class="risk-num">01</div>
+      <div>
+        <h5>Brand damage from franchise quality failure <span class="pill pill-high" style="margin-left:8px;">High</span></h5>
+        <p>Mitigation: Monthly audits, mystery shoppers, ISO hygiene protocols at all outlets, public hygiene scores, franchise KPI-linked renewal.</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">02</div>
+      <div>
+        <h5>Well-funded copycat entering the Avil Milk category <span class="pill pill-high" style="margin-left:8px;">High</span></h5>
+        <p>Mitigation: Speed of franchise density, trademark registration, GI tag pursuit, early RTD product launch, deep social community. Make switching costs emotional, not just rational.</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">03</div>
+      <div>
+        <h5>RTD product shelf-life and cold chain challenges <span class="pill pill-med" style="margin-left:8px;">Medium</span></h5>
+        <p>Mitigation: Partner with established food-tech co-packer experienced in UHT/pasteurized dairy. Pilot in Kerala (short cold chain) before national expansion.</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">04</div>
+      <div>
+        <h5>Delivery platform commission margin squeeze <span class="pill pill-med" style="margin-left:8px;">Medium</span></h5>
+        <p>Mitigation: Negotiate as a niche brand. Simultaneously build ONDC presence and WhatsApp D2C channel. Never be 100% dependent on Swiggy/Zomato.</p>
+      </div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-num">05</div>
+      <div>
+        <h5>Input cost inflation (milk, banana prices) <span class="pill pill-low" style="margin-left:8px;">Low-Med</span></h5>
+        <p>Mitigation: Central procurement contracts with price-lock clauses. Explore backward integration (supplier partnerships with banana farmers in Malappuram).</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<div class="report-footer">
+  MOUZY STRATEGIC ANALYSIS REPORT · PREPARED JUNE 2026 · CONFIDENTIAL<br>
+  All financial projections are estimates based on publicly available data and stated assumptions. Actual results will vary.
+</div>
+
+</body>
+</html>
