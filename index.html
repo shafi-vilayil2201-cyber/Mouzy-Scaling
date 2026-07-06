@@ -1347,6 +1347,172 @@
     box-shadow: 0 8px 20px rgba(15,23,42,0.04);
   }
 
+  .geo-score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .geo-score-card,
+  .geo-region-card,
+  .geo-table-card {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(15,23,42,0.08);
+    box-shadow: var(--shadow-md);
+    border-radius: 24px;
+  }
+
+  .geo-score-card {
+    padding: 16px;
+    border-top: 3px solid var(--accent);
+  }
+
+  .geo-score-card.positive { border-top-color: var(--accent-2); }
+  .geo-score-card.warn { border-top-color: var(--accent-3); }
+
+  .geo-score-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+  }
+
+  .geo-score-card .value {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+  }
+
+  .geo-score-card .sub {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  .geo-region-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .geo-region-card {
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .geo-region-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent), rgba(217,119,6,0.1));
+  }
+
+  .geo-region-card.south::before { background: linear-gradient(90deg, #0f766e, #14b8a6); }
+  .geo-region-card.west::before { background: linear-gradient(90deg, #d97706, #f59e0b); }
+  .geo-region-card.central::before { background: linear-gradient(90deg, #fb7185, #f472b6); }
+  .geo-region-card.east::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+  .geo-region-card.north::before { background: linear-gradient(90deg, #0f172a, #334155); }
+
+  .geo-region-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .geo-region-head h4 {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+
+  .geo-region-score {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .geo-state-list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .geo-state-item {
+    padding: 12px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(15,23,42,0.06);
+    background: linear-gradient(180deg, rgba(248,250,252,0.96), rgba(255,255,255,0.94));
+  }
+
+  .geo-state-item.high {
+    border-color: rgba(217,119,6,0.2);
+    background: linear-gradient(135deg, rgba(217,119,6,0.12), rgba(15,118,110,0.08));
+  }
+
+  .geo-state-item .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .geo-state-item strong {
+    font-size: 13px;
+  }
+
+  .geo-city-ranks {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  .geo-table-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .geo-table-card .table-shell {
+    border-radius: 24px;
+  }
+
+  .table-highlight td {
+    background: rgba(217,119,6,0.05);
+  }
+
+  .geo-table-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .geo-metric-chip {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.94), rgba(248,250,252,0.96));
+    border: 1px solid rgba(15,23,42,0.06);
+  }
+
+  .geo-metric-chip span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-soft);
+    margin-bottom: 6px;
+  }
+
+  .geo-metric-chip strong {
+    font-size: 14px;
+  }
+
   .flywheel {
     padding: 22px;
   }
@@ -2636,14 +2802,15 @@
     { id: 'customer-analysis', num: '06', title: 'Customer Analysis', icon: 'users' },
     { id: 'organization-analysis', num: '07', title: 'Organization Analysis', icon: 'org' },
     { id: 'marketplace-expansion', num: '08', title: 'Marketplace Expansion', icon: 'globe' },
-    { id: 'scaling-opportunities', num: '09', title: 'Scaling Opportunities', icon: 'rocket' },
-    { id: 'operational-improvements', num: '10', title: 'Operational Improvements', icon: 'gear' },
-    { id: 'marketing-strategy', num: '11', title: 'Marketing Strategy', icon: 'megaphone' },
-    { id: 'financial-strategy', num: '12', title: 'Financial Strategy', icon: 'wallet' },
-    { id: 'technology-roadmap', num: '13', title: 'Technology Roadmap', icon: 'cpu' },
-    { id: 'action-plan', num: '14', title: 'Action Plan', icon: 'calendar' },
-    { id: 'founder-recommendations', num: '15', title: 'Founder Recommendations', icon: 'userCheck' },
-    { id: 'million-dollar-opportunities', num: '16', title: 'Million Dollar Opportunities', icon: 'diamond' }
+    { id: 'geographical-expansion', num: '09', title: 'Geographical Expansion', icon: 'map' },
+    { id: 'scaling-opportunities', num: '10', title: 'Scaling Opportunities', icon: 'rocket' },
+    { id: 'operational-improvements', num: '11', title: 'Operational Improvements', icon: 'gear' },
+    { id: 'marketing-strategy', num: '12', title: 'Marketing Strategy', icon: 'megaphone' },
+    { id: 'financial-strategy', num: '13', title: 'Financial Strategy', icon: 'wallet' },
+    { id: 'technology-roadmap', num: '14', title: 'Technology Roadmap', icon: 'cpu' },
+    { id: 'action-plan', num: '15', title: 'Action Plan', icon: 'calendar' },
+    { id: 'founder-recommendations', num: '16', title: 'Founder Recommendations', icon: 'userCheck' },
+    { id: 'million-dollar-opportunities', num: '17', title: 'Million Dollar Opportunities', icon: 'diamond' }
   ];
 
   const iconSvg = (name) => {
@@ -2657,6 +2824,7 @@
       users: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M16 20v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"/><path ' + common + ' d="M12 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path ' + common + ' d="M20 20v-1a3.5 3.5 0 0 0-3-3.46"/><path ' + common + ' d="M16.5 5.5a3 3 0 0 1 0 5.82"/></svg>',
       org: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M12 5v4"/><path ' + common + ' d="M6 12h12"/><rect x="3" y="16" width="6" height="4" rx="1" ' + common + '/><rect x="9" y="8" width="6" height="4" rx="1" ' + common + '/><rect x="15" y="16" width="6" height="4" rx="1" ' + common + '/></svg>',
       globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" ' + common + '/><path ' + common + ' d="M4 12h16M12 4c2.5 2.3 4 5.1 4 8s-1.5 5.7-4 8c-2.5-2.3-4-5.1-4-8s1.5-5.7 4-8z"/></svg>',
+      map: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M4 6l5-2 6 2 5-2v14l-5 2-6-2-5 2V6z"/><path ' + common + ' d="M9 4v14M15 6v14"/></svg>',
       rocket: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M14 4c3.5 0 6 2.5 6 6-1.5 3-4 5.5-7 7l-4 1-1 4-2-2 1-4 1-1c1.5-3 4-5.5 7-7z"/><path ' + common + ' d="M9 15l-3 3"/><path ' + common + ' d="M14 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>',
       gear: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M12 8.5A3.5 3.5 0 1 0 12 15a3.5 3.5 0 0 0 0-6.5z"/><path ' + common + ' d="M19 12l2-1-1-3-2 .3a7.4 7.4 0 0 0-1.3-1.3L16 5l-3-1-1 2a7.4 7.4 0 0 0-1.9 0l-1-2-3 1 .3 2a7.4 7.4 0 0 0-1.3 1.3L3 8l-1 3 2 1a7.4 7.4 0 0 0 0 1.9l-2 1 1 3 2-.3c.4.5.9.9 1.3 1.3L8 19l3 1 1-2c.6.1 1.2.1 1.9 0l1 2 3-1-.3-2a7.4 7.4 0 0 0 1.3-1.3L19 16l1-3-2-1c.1-.6.1-1.2 0-1.9z"/></svg>',
       megaphone: '<svg viewBox="0 0 24 24" aria-hidden="true"><path ' + common + ' d="M3 11v2a2 2 0 0 0 2 2h2l4 4v-4h4l6 3V6l-6 3H5a2 2 0 0 0-2 2z"/><path ' + common + ' d="M13 9v6"/></svg>',
@@ -2678,6 +2846,201 @@
     const h2 = section.querySelector('h2');
     return h2 && h2.textContent.trim() === 'Key Risks & Mitigations';
   });
+
+  const geoData = [
+    {
+      key: 'south',
+      title: 'South India',
+      score: 92,
+      note: 'Highest mix of brand fit, Malayali density, student traffic, and premium repeat purchase behaviour.',
+      states: [
+        { state: 'Kerala', score: 98, cities: ['Kochi', 'Thiruvananthapuram', 'Kozhikode'] },
+        { state: 'Tamil Nadu', score: 93, cities: ['Chennai', 'Coimbatore', 'Madurai'] },
+        { state: 'Karnataka', score: 92, cities: ['Bengaluru', 'Mysuru', 'Mangaluru'] },
+        { state: 'Telangana', score: 89, cities: ['Hyderabad', 'Warangal', 'Nizamabad'] },
+        { state: 'Andhra Pradesh', score: 84, cities: ['Visakhapatnam', 'Vijayawada', 'Tirupati'] }
+      ]
+    },
+    {
+      key: 'central',
+      title: 'Central India',
+      score: 69,
+      note: 'Moderate density with strong value-driven demand and selective premium clusters.',
+      states: [
+        { state: 'Madhya Pradesh', score: 73, cities: ['Indore', 'Bhopal', 'Gwalior'] },
+        { state: 'Chhattisgarh', score: 66, cities: ['Raipur', 'Bhilai', 'Bilaspur'] }
+      ]
+    },
+    {
+      key: 'west',
+      title: 'West India',
+      score: 83,
+      note: 'Strong premium spending, dense urban catchments, and high delivery-platform adoption.',
+      states: [
+        { state: 'Maharashtra', score: 90, cities: ['Mumbai', 'Pune', 'Nagpur'] },
+        { state: 'Gujarat', score: 84, cities: ['Ahmedabad', 'Surat', 'Vadodara'] },
+        { state: 'Goa', score: 72, cities: ['Panaji', 'Margao', 'Vasco da Gama'] },
+        { state: 'Rajasthan', score: 75, cities: ['Jaipur', 'Udaipur', 'Kota'] }
+      ]
+    },
+    {
+      key: 'east',
+      title: 'East India',
+      score: 68,
+      note: 'Selective city-led openings make sense, especially around college corridors and emerging delivery economies.',
+      states: [
+        { state: 'West Bengal', score: 81, cities: ['Kolkata', 'Siliguri', 'Durgapur'] },
+        { state: 'Odisha', score: 74, cities: ['Bhubaneswar', 'Cuttack', 'Rourkela'] },
+        { state: 'Bihar', score: 67, cities: ['Patna', 'Gaya', 'Bhagalpur'] },
+        { state: 'Jharkhand', score: 69, cities: ['Ranchi', 'Jamshedpur', 'Dhanbad'] },
+        { state: 'Assam', score: 71, cities: ['Guwahati', 'Jorhat', 'Dibrugarh'] },
+        { state: 'Tripura', score: 58, cities: ['Agartala', 'Udaipur', 'Dharmanagar'] },
+        { state: 'Meghalaya', score: 56, cities: ['Shillong', 'Tura', 'Nongpoh'] },
+        { state: 'Manipur', score: 55, cities: ['Imphal', 'Thoubal', 'Bishnupur'] },
+        { state: 'Mizoram', score: 52, cities: ['Aizawl', 'Lunglei', 'Champhai'] },
+        { state: 'Nagaland', score: 53, cities: ['Dimapur', 'Kohima', 'Mokokchung'] },
+        { state: 'Arunachal Pradesh', score: 49, cities: ['Itanagar', 'Pasighat', 'Naharlagun'] },
+        { state: 'Sikkim', score: 50, cities: ['Gangtok', 'Namchi', 'Mangan'] }
+      ]
+    },
+    {
+      key: 'north',
+      title: 'North India',
+      score: 78,
+      note: 'Large catchments and strong footfall, but higher competition and more price sensitivity in many pockets.',
+      states: [
+        { state: 'Delhi', score: 88, cities: ['New Delhi', 'South Delhi', 'Rohini'] },
+        { state: 'Haryana', score: 80, cities: ['Gurugram', 'Faridabad', 'Panipat'] },
+        { state: 'Punjab', score: 77, cities: ['Ludhiana', 'Amritsar', 'Jalandhar'] },
+        { state: 'Uttar Pradesh', score: 79, cities: ['Noida', 'Lucknow', 'Kanpur'] },
+        { state: 'Himachal Pradesh', score: 61, cities: ['Shimla', 'Dharamshala', 'Manali'] },
+        { state: 'Uttarakhand', score: 64, cities: ['Dehradun', 'Haridwar', 'Haldwani'] },
+        { state: 'Jammu & Kashmir', score: 60, cities: ['Srinagar', 'Jammu', 'Anantnag'] }
+      ]
+    }
+  ];
+
+  const geoMetrics = [
+    { label: 'Population Density', value: 'High', sub: 'More daily purchase probability and stronger outlet catchments.' },
+    { label: 'Footfall', value: 'Critical', sub: 'Malls, transit nodes, colleges, and high-street spillover matter most.' },
+    { label: 'Customer Mix', value: 'Students + Professionals', sub: 'Weighted toward Gen Z, young families, and office clusters.' },
+    { label: 'Competition Gap', value: 'Inverse score', sub: 'Lower direct Avil or specialty beverage competition scores higher.' },
+    { label: 'Rental Economics', value: 'Balanced', sub: 'Good rent-to-revenue ratio is essential for premium city sites.' },
+    { label: 'Delivery Readiness', value: 'High', sub: '3-5 km dense delivery radius improves repeat orders and app economics.' },
+    { label: 'Premium Affinity', value: 'Strong', sub: 'Disposable income and lifestyle fit drive premium menu adoption.' },
+    { label: 'Brand Fit', value: 'Mouzy-native', sub: 'Malayali and Kerala diaspora markets should rank highest initially.' }
+  ];
+
+  const geoStateTone = (score) => (score >= 85 ? 'high' : score >= 70 ? 'medium' : 'low');
+
+  const geoTopStates = () => geoData
+    .flatMap((region) => region.states.map((entry) => ({ region: region.title, ...entry })))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 12);
+
+  const buildGeoView = () => {
+    const topStates = geoTopStates();
+    const stateRows = geoData.flatMap((region) => region.states.map((entry, index) => ({
+      region: region.title,
+      regionKey: region.key,
+      rank: `${String(index + 1).padStart(2, '0')} in ${region.title}`,
+      ...entry
+    })));
+
+    return `
+      <div class="section-shell">
+        <div class="hero-card">
+          <div class="hero-kicker">Strategic geography map</div>
+          <div class="hero-grid">
+            <div>
+              <div class="hero-title">Geographical Expansion</div>
+              <p class="hero-subtitle">A city-priority framework for outlet rollout. The ranking uses density, footfall, customer mix, competition gap, rent viability, delivery readiness, and brand fit. High-potential states and cities are visually highlighted.</p>
+            </div>
+            <div class="hero-stat-stack">
+              <div class="hero-stat"><span>Best Entry Mode</span><strong>Cluster rollout</strong></div>
+              <div class="hero-stat"><span>Primary Focus</span><strong>South India</strong></div>
+              <div class="hero-stat"><span>High Potential Flag</span><strong>Amber highlight</strong></div>
+            </div>
+          </div>
+          <div class="meta-chip-row">
+            <span class="meta-chip"><strong>Weight 1</strong>Density and footfall</span>
+            <span class="meta-chip"><strong>Weight 2</strong>Professionals and college students</span>
+            <span class="meta-chip"><strong>Weight 3</strong>Competition gap and rent economics</span>
+            <span class="meta-chip"><strong>Weight 4</strong>Delivery readiness and repeat demand</span>
+          </div>
+        </div>
+        <div class="geo-score-grid">
+          ${geoMetrics.map((metric, index) => `
+            <div class="geo-score-card ${index % 3 === 1 ? 'positive' : index % 4 === 3 ? 'warn' : ''}">
+              <div class="label">${metric.label}</div>
+              <div class="value">${metric.value}</div>
+              <div class="sub">${metric.sub}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="chart-row">
+          <div class="chart-card"><div class="chart-head"><h3>Regional Priority</h3><span>Average opportunity by region</span></div><canvas id="geoRegionChart"></canvas></div>
+          <div class="chart-card"><div class="chart-head"><h3>Top State Scores</h3><span>Highest-value states first</span></div><canvas id="geoStateChart"></canvas></div>
+        </div>
+        <div class="geo-region-grid">
+          ${geoData.map((region) => `
+            <div class="geo-region-card ${region.key}">
+              <div class="geo-region-head">
+                <h4>${region.title}</h4>
+                <div class="geo-region-score">${region.score}/100</div>
+              </div>
+              <p style="font-size:12px; color:var(--text-soft); line-height:1.6; margin-bottom:12px;">${region.note}</p>
+              <div class="geo-state-list">
+                ${region.states.map((entry) => `
+                  <div class="geo-state-item ${geoStateTone(entry.score)}">
+                    <div class="row">
+                      <strong>${entry.state}</strong>
+                      <span class="pill ${entry.score >= 85 ? 'pill-high' : entry.score >= 70 ? 'pill-med' : 'pill-low'}">${entry.score}</span>
+                    </div>
+                    <div class="geo-city-ranks">
+                      1. ${entry.cities[0]}<br>
+                      2. ${entry.cities[1]}<br>
+                      3. ${entry.cities[2]}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="geo-table-card panel-card">
+          <div class="geo-table-meta">
+            <div class="geo-metric-chip"><span>Selection rule</span><strong>Choose sites with high footfall, student or office density, and low direct competition.</strong></div>
+            <div class="geo-metric-chip"><span>Launch sequence</span><strong>South first, then West, then North, then East and Central.</strong></div>
+            <div class="geo-metric-chip"><span>Monitoring extras</span><strong>Transit access, parking, rent-to-sales ratio, digital delivery radius, and repeat-buy potential.</strong></div>
+          </div>
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>Region</th>
+                  <th>State</th>
+                  <th>Potential Cities</th>
+                  <th>Rank</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${stateRows.map((row) => `
+                  <tr class="${row.score >= 85 ? 'table-highlight' : ''}">
+                    <td><strong>${row.region}</strong></td>
+                    <td>${row.state}</td>
+                    <td>${row.cities.map((city, idx) => `${idx + 1}. ${city}`).join('<br>')}</td>
+                    <td>${row.rank}</td>
+                    <td><span class="pill ${row.score >= 85 ? 'pill-high' : row.score >= 70 ? 'pill-med' : 'pill-low'}">${row.score}/100</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>`;
+  };
 
   const cloneCoverMeta = () => Array.from(cover.querySelectorAll('.cover-meta-item')).map((item) => {
     const label = item.querySelector('label')?.textContent || '';
@@ -2763,6 +3126,11 @@
         <div class="chart-card"><div class="chart-head"><h3>Market Growth</h3><span>2024 to 2033E</span></div><canvas id="marketChart"></canvas></div>
         <div class="chart-card"><div class="chart-head"><h3>Demand Drivers</h3><span>Tailwind profile</span></div><canvas id="demandChart"></canvas></div>
       </div>`,
+    'geographical-expansion': `
+      <div class="chart-row">
+        <div class="chart-card"><div class="chart-head"><h3>Regional Priority</h3><span>Average opportunity by region</span></div><canvas id="geoRegionChart"></canvas></div>
+        <div class="chart-card"><div class="chart-head"><h3>Top State Scores</h3><span>Best expansion candidates</span></div><canvas id="geoStateChart"></canvas></div>
+      </div>`,
     'competitor-analysis': `
       <div class="chart-row">
         <div class="chart-card"><div class="chart-head"><h3>Threat Heat</h3><span>Relative intensity</span></div><canvas id="competitorChart"></canvas></div>
@@ -2790,6 +3158,21 @@
     let nodes = [];
     if (def.id === 'executive-summary') {
       nodes = [buildExecView()];
+    } else if (def.id === 'geographical-expansion') {
+      return `
+      <section class="view" data-view="${def.id}" aria-labelledby="${def.id}-title">
+        <div class="view-shell">
+          <div class="view-header">
+            <div>
+              <div class="view-kicker">${def.num} · ${def.title}</div>
+              <h2 id="${def.id}-title">${def.title}</h2>
+            </div>
+            <div class="view-chip">Interactive section</div>
+          </div>
+          ${buildGeoView()}
+          ${reportFooter ? `<div class="footer-note">${reportFooter.textContent.trim()}</div>` : ''}
+        </div>
+      </section>`;
     } else if (def.id === 'million-dollar-opportunities') {
       const insights = sectionByTitle('Million-Dollar Insights');
       nodes = [insights ? insights.cloneNode(true) : document.createElement('div'), riskSection ? riskSection.cloneNode(true) : document.createElement('div')];
@@ -3030,6 +3413,52 @@
           datasets: [{ data: [25, 22, 20, 18, 15], backgroundColor: ['#f59e0b', '#0f766e', '#fb7185', '#94a3b8', '#fcd34d'], borderWidth: 0 }]
         },
         options: { ...chartBase, cutout: '68%' }
+      });
+    }
+    if (id === 'geographical-expansion') {
+      const regionLabels = geoData.map((region) => region.title);
+      const regionScores = geoData.map((region) => region.score);
+      const topStates = geoTopStates();
+      createChart('geoRegionChart', {
+        type: 'bar',
+        data: {
+          labels: regionLabels,
+          datasets: [{
+            label: 'Opportunity score',
+            data: regionScores,
+            backgroundColor: ['#0f766e', '#d97706', '#0f172a', '#6366f1', '#94a3b8'],
+            borderRadius: 12
+          }]
+        },
+        options: {
+          ...chartBase,
+          plugins: { ...chartBase.plugins, legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#475569' } },
+            y: { grid: { color: 'rgba(148, 163, 184, 0.18)' }, ticks: { color: '#475569' }, suggestedMax: 100 }
+          }
+        }
+      });
+      createChart('geoStateChart', {
+        type: 'bar',
+        data: {
+          labels: topStates.map((state) => state.state),
+          datasets: [{
+            label: 'State score',
+            data: topStates.map((state) => state.score),
+            backgroundColor: topStates.map((state) => (state.score >= 90 ? '#d97706' : state.score >= 80 ? '#0f766e' : '#94a3b8')),
+            borderRadius: 12
+          }]
+        },
+        options: {
+          ...chartBase,
+          indexAxis: 'y',
+          plugins: { ...chartBase.plugins, legend: { display: false } },
+          scales: {
+            x: { grid: { color: 'rgba(148, 163, 184, 0.18)' }, ticks: { color: '#475569' }, suggestedMax: 100 },
+            y: { grid: { display: false }, ticks: { color: '#475569' } }
+          }
+        }
       });
     }
     if (id === 'competitor-analysis') {
