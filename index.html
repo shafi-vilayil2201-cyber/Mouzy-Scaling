@@ -256,7 +256,7 @@
   .swot-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2px;
+    gap: 10px;
     margin-bottom: 40px;
   }
   .swot-cell {
@@ -346,7 +346,7 @@
   .roadmap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 2px;
+    gap: 10px;
     margin-bottom: 40px;
   }
   .roadmap-col {
@@ -379,7 +379,7 @@
   .porters-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    gap: 10px;
     margin-bottom: 40px;
   }
   .porter-cell {
@@ -410,7 +410,7 @@
   .opp-matrix {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 12px;
     margin-bottom: 40px;
   }
   .opp-quadrant {
@@ -1057,7 +1057,7 @@
   .roadmap,
   .flywheel-steps {
     display: grid;
-    gap: 14px;
+    gap: 12px;
   }
 
   .meta-chip-row {
@@ -1297,6 +1297,7 @@
 
   .platform-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 
   .platform-card {
@@ -2360,29 +2361,107 @@
     <h2>Scaling Opportunities — Top 20</h2>
     <div class="section-divider"></div>
 
+    <div class="callout">
+      <strong>How to read this section:</strong> the opportunities are grouped by channel so you can see what is immediate, what needs product work, and what should only scale after operations are stable.
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-card"><div class="kpi-num">3–5 km</div><div class="kpi-label">Quick Commerce Service Radius</div></div>
+      <div class="kpi-card"><div class="kpi-num">₹120–180</div><div class="kpi-label">Target Order Value</div></div>
+      <div class="kpi-card"><div class="kpi-num">38–45%</div><div class="kpi-label">Gross Margin Scope</div></div>
+      <div class="kpi-card"><div class="kpi-num">30–60 days</div><div class="kpi-label">Payback Window for Pilot</div></div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin:32px 0 14px;">Quick Commerce Playbook</h3>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h4>Step 1 <span class="pill pill-plan">SETUP</span></h4>
+        <div class="row"><label>What to do</label><span>Choose 2 pilot outlets with strong prep speed and repeat demand.</span></div>
+        <div class="row"><label>Data point</label><span>Target stores with 3–5 km dense delivery catchment and 50+ daily walk-ins.</span></div>
+        <div class="row"><label>Value</label><span>Fast launch, low capex, and better control over service quality.</span></div>
+      </div>
+      <div class="platform-card">
+        <h4>Step 2 <span class="pill pill-saffron">MENU</span></h4>
+        <div class="row"><label>What to do</label><span>List the top 8–10 SKUs only. Keep delivery menu tight.</span></div>
+        <div class="row"><label>Data point</label><span>Best sellers should drive 70% of delivery revenue.</span></div>
+        <div class="row"><label>Value</label><span>Less waste, faster prep, fewer errors, better ratings.</span></div>
+      </div>
+      <div class="platform-card">
+        <h4>Step 3 <span class="pill pill-med">PACKAGING</span></h4>
+        <div class="row"><label>What to do</label><span>Use tamper-proof lids, branded cups, and insulated bags.</span></div>
+        <div class="row"><label>Data point</label><span>Packaging cost should stay inside 4–7% of AOV.</span></div>
+        <div class="row"><label>Value</label><span>Protects product quality and reduces refund risk.</span></div>
+      </div>
+      <div class="platform-card">
+        <h4>Step 4 <span class="pill pill-low">LAUNCH</span></h4>
+        <div class="row"><label>What to do</label><span>Go live on Swiggy/Zomato, then push WhatsApp ordering to loyal users.</span></div>
+        <div class="row"><label>Data point</label><span>First 100 orders should come from existing customers to build ratings.</span></div>
+        <div class="row"><label>Value</label><span>Improves ranking, conversion, and review quality from day one.</span></div>
+      </div>
+      <div class="platform-card">
+        <h4>Step 5 <span class="pill pill-high">OPTIMIZE</span></h4>
+        <div class="row"><label>What to do</label><span>Track prep time, cancellation rate, review score, and repeat rate weekly.</span></div>
+        <div class="row"><label>Data point</label><span>Healthy target: 4.5+ rating, under 15 min prep, under 5% cancellations.</span></div>
+        <div class="row"><label>Value</label><span>Higher frequency, stronger unit economics, and predictable scaling.</span></div>
+      </div>
+    </div>
+
     <table>
-      <thead><tr><th>#</th><th>Opportunity</th><th>Impact</th><th>Difficulty</th><th>Investment</th><th>Timeline</th><th>ROI Est.</th></tr></thead>
+      <thead><tr><th>Metric</th><th>Target</th><th>Why it matters</th><th>Margin Impact</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td><strong>Swiggy/Zomato delivery from existing outlets</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹50K–1L</td><td>30 days</td><td>3–5x in 90 days</td></tr>
-        <tr><td>2</td><td><strong>WhatsApp D2C ordering + loyalty program</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹10–50K</td><td>2 weeks</td><td>Immediate</td></tr>
-        <tr><td>3</td><td><strong>Franchise expansion — Bengaluru (large Malayali base)</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹20–40L/outlet</td><td>3–6 months</td><td>IRR 80–105%</td></tr>
-        <tr><td>4</td><td><strong>RTD chilled Avil Milk — co-packed, 3–5 day shelf life</strong></td><td><span class="pill pill-high">Very High</span></td><td><span class="pill pill-high">High</span></td><td>₹20–40L</td><td>6–9 months</td><td>10x category expansion</td></tr>
-        <tr><td>5</td><td><strong>GCC expansion — Abu Dhabi, Sharjah franchise</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹30–60L/outlet</td><td>4–8 months</td><td>Revenue 2–3x Indian outlet (premium pricing)</td></tr>
-        <tr><td>6</td><td><strong>Mouzy DIY Kit (shelf-stable) on Amazon India + Amazon UAE</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹10–20L</td><td>6–9 months</td><td>High margin, zero delivery cost</td></tr>
-        <tr><td>7</td><td><strong>Premium "Heritage Reserve" tier — ₹250–350 price point</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹1–5L (R&D)</td><td>60 days</td><td>30–40% margin improvement</td></tr>
-        <tr><td>8</td><td><strong>Corporate catering / bulk orders for offices, events</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>Minimal</td><td>30 days</td><td>High ticket, recurring</td></tr>
-        <tr><td>9</td><td><strong>Rebranded packaging — Mouzy as a visual identity system</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹3–8L</td><td>60 days</td><td>Indirect: ASP uplift + shareability</td></tr>
-        <tr><td>10</td><td><strong>Franchise expansion — Chennai (Keralite population)</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-med">Medium</span></td><td>₹25–40L</td><td>3–6 months</td><td>New market entry</td></tr>
-        <tr><td>11</td><td><strong>Kochi franchise — capital city, Tier-1 customer base</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹20–35L</td><td>2–4 months</td><td>High revenue outlet</td></tr>
-        <tr><td>12</td><td><strong>Health repositioning — "Kerala's Original Superfood Drink"</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹2–5L (content)</td><td>30 days</td><td>New audience acquisition</td></tr>
-        <tr><td>13</td><td><strong>Influencer partnership strategy — Kerala food bloggers + NRI channels</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-low">Low</span></td><td>₹5–15L/year</td><td>30 days</td><td>3–5x social reach</td></tr>
-        <tr><td>14</td><td><strong>Mouzy Gifting — curated gift boxes for Eid, Onam, Christmas</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>₹2–5L</td><td>60 days</td><td>High-margin seasonal revenue</td></tr>
-        <tr><td>15</td><td><strong>B2B supply to Kerala restaurants — licensed Mouzy base</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹5–15L</td><td>3–6 months</td><td>Recurring B2B revenue</td></tr>
-        <tr><td>16</td><td><strong>Mouzy subscription box (monthly Avil Milk kit delivery)</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹3–8L</td><td>3–4 months</td><td>Recurring revenue + LTV increase</td></tr>
-        <tr><td>17</td><td><strong>School / college canteen tie-ups — low cost, high volume</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-low">Low</span></td><td>Minimal</td><td>30 days</td><td>Volume + brand awareness</td></tr>
-        <tr><td>18</td><td><strong>Saudi Arabia / Qatar franchise expansion</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-high">High</span></td><td>₹50–80L</td><td>9–15 months</td><td>Very high revenue per outlet</td></tr>
-        <tr><td>19</td><td><strong>Kerala tourism tie-up (airports, hotel lobbies, cultural events)</strong></td><td><span class="pill pill-med">Medium</span></td><td><span class="pill pill-med">Medium</span></td><td>₹5–10L</td><td>4–6 months</td><td>Premium brand positioning</td></tr>
-        <tr><td>20</td><td><strong>Blinkit / Zepto listing (packaged format) — North Kerala first</strong></td><td><span class="pill pill-high">High</span></td><td><span class="pill pill-high">High</span></td><td>₹25–40L</td><td>9–12 months</td><td>Category creation moment</td></tr>
+        <tr><td><strong>Delivery Radius</strong></td><td>3–5 km</td><td>Keeps product quality high and rider time low.</td><td>Protects margin by reducing spoilage and refunds.</td></tr>
+        <tr><td><strong>Basket Value</strong></td><td>₹120–180</td><td>Big enough to absorb platform commission.</td><td>Needed to hold 10–20% net contribution after fees.</td></tr>
+        <tr><td><strong>Food Cost</strong></td><td>28–35%</td><td>Core lever for profitability on delivery.</td><td>Lower input cost gives headroom against commission.</td></tr>
+        <tr><td><strong>Platform Commission</strong></td><td>18–25%</td><td>Swiggy/Zomato fee is the main drag on net margin.</td><td>Push direct orders to improve net by 8–12 points.</td></tr>
+        <tr><td><strong>Net Margin</strong></td><td>8–15%</td><td>Healthy for delivery when order volume is consistent.</td><td>Can improve with bundles, combos, and loyalty.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin:34px 0 14px;">Category 1: Quick Commerce & D2C</h3>
+    <table>
+      <thead><tr><th>#</th><th>Opportunity</th><th>Why It Matters</th><th>Value / Margin Scope</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Swiggy/Zomato delivery from existing outlets</strong></td><td>Fastest way to convert nearby demand into revenue.</td><td>3–5x revenue lift potential in 90 days; net margin depends on commission.</td><td>30 days</td></tr>
+        <tr><td>2</td><td><strong>WhatsApp D2C ordering + loyalty program</strong></td><td>Builds owned demand and reduces dependency on platforms.</td><td>Immediate retention lift; stronger net margin than marketplace orders.</td><td>2 weeks</td></tr>
+        <tr><td>4</td><td><strong>RTD chilled Avil Milk — co-packed, 3–5 day shelf life</strong></td><td>Extends the brand beyond the store into quick commerce and retail.</td><td>10x category expansion; 35–50% margin after co-packing.</td><td>6–9 months</td></tr>
+        <tr><td>20</td><td><strong>Blinkit / Zepto listing (packaged format) — North Kerala first</strong></td><td>Creates a new channel with convenience-led repeat purchase.</td><td>Category creation moment; higher volume, lower fulfilment friction.</td><td>9–12 months</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin:34px 0 14px;">Category 2: Product & Retail Expansion</h3>
+    <table>
+      <thead><tr><th>#</th><th>Opportunity</th><th>Why It Matters</th><th>Value / Margin Scope</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>6</td><td><strong>Mouzy DIY Kit (shelf-stable) on Amazon India + Amazon UAE</strong></td><td>Turns the recipe into a giftable, shippable product.</td><td>High margin, zero store dependency, recurring online sales.</td><td>6–9 months</td></tr>
+        <tr><td>7</td><td><strong>Premium "Heritage Reserve" tier — ₹250–350 price point</strong></td><td>Raises average ticket and creates a premium anchor.</td><td>30–40% margin improvement through premium pricing.</td><td>60 days</td></tr>
+        <tr><td>9</td><td><strong>Rebranded packaging — Mouzy as a visual identity system</strong></td><td>Improves shelf appeal, social sharing, and premium perception.</td><td>Indirect ASP uplift and stronger conversion.</td><td>60 days</td></tr>
+        <tr><td>12</td><td><strong>Health repositioning — "Kerala's Original Superfood Drink"</strong></td><td>Opens an urban health-conscious audience segment.</td><td>New audience acquisition with strong content-led ROI.</td><td>30 days</td></tr>
+        <tr><td>14</td><td><strong>Mouzy Gifting — curated gift boxes for Eid, Onam, Christmas</strong></td><td>Seasonal demand with premium gifting economics.</td><td>High-margin festive revenue with low acquisition cost.</td><td>60 days</td></tr>
+        <tr><td>16</td><td><strong>Mouzy subscription box (monthly Avil Milk kit delivery)</strong></td><td>Recurring revenue and better lifetime value.</td><td>Recurring margin stream with predictable cash flow.</td><td>3–4 months</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin:34px 0 14px;">Category 3: Franchise & Geographic Expansion</h3>
+    <table>
+      <thead><tr><th>#</th><th>Opportunity</th><th>Why It Matters</th><th>Value / Margin Scope</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>3</td><td><strong>Franchise expansion — Bengaluru (large Malayali base)</strong></td><td>Large demand base and strong fit for Kerala nostalgia.</td><td>IRR 80–105% if outlet execution is clean.</td><td>3–6 months</td></tr>
+        <tr><td>5</td><td><strong>GCC expansion — Abu Dhabi, Sharjah franchise</strong></td><td>Premium price point and emotional diaspora demand.</td><td>2–3x Indian outlet revenue at similar core cost structure.</td><td>4–8 months</td></tr>
+        <tr><td>10</td><td><strong>Franchise expansion — Chennai (Keralite population)</strong></td><td>Neighbouring metro with strong regional acceptance.</td><td>New market entry with good demand density.</td><td>3–6 months</td></tr>
+        <tr><td>11</td><td><strong>Kochi franchise — capital city, Tier-1 customer base</strong></td><td>High visibility market and strong revenue outlet.</td><td>Fast payback if site quality is good.</td><td>2–4 months</td></tr>
+        <tr><td>18</td><td><strong>Saudi Arabia / Qatar franchise expansion</strong></td><td>Large NRI belt with strong premium consumption.</td><td>Very high revenue per outlet, but higher setup complexity.</td><td>9–15 months</td></tr>
+        <tr><td>19</td><td><strong>Kerala tourism tie-up (airports, hotel lobbies, cultural events)</strong></td><td>Brand visibility in high-footfall tourist environments.</td><td>Premium positioning and high-value brand exposure.</td><td>4–6 months</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Playfair Display',serif; font-size:22px; margin:34px 0 14px;">Category 4: Brand, B2B & Community</h3>
+    <table>
+      <thead><tr><th>#</th><th>Opportunity</th><th>Why It Matters</th><th>Value / Margin Scope</th><th>Timeline</th></tr></thead>
+      <tbody>
+        <tr><td>8</td><td><strong>Corporate catering / bulk orders for offices, events</strong></td><td>High-ticket recurring demand from offices and institutions.</td><td>Predictable revenue with good prep efficiency.</td><td>30 days</td></tr>
+        <tr><td>13</td><td><strong>Influencer partnership strategy — Kerala food bloggers + NRI channels</strong></td><td>Fast awareness and strong social proof.</td><td>3–5x social reach with relatively low spend.</td><td>30 days</td></tr>
+        <tr><td>15</td><td><strong>B2B supply to Kerala restaurants — licensed Mouzy base</strong></td><td>Lets other outlets sell Mouzy-like products under controlled standards.</td><td>Recurring B2B revenue and lower sales volatility.</td><td>3–6 months</td></tr>
+        <tr><td>17</td><td><strong>School / college canteen tie-ups — low cost, high volume</strong></td><td>Builds habit-led demand among students.</td><td>Volume plus brand awareness with low acquisition cost.</td><td>30 days</td></tr>
       </tbody>
     </table>
   </div>
